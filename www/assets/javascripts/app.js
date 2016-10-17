@@ -50,7 +50,9 @@ VISTA.preLogin1 = function() {
     type: 'initialise'
   }
   EWD.send(params, function(responseObj) {
-    var messageObj = {type: "isLogonInhibited"};
+    var messageObj = {
+      service: 'ewd-vista-login',
+      type: 'isLogonInhibited'};
     EWD.send(messageObj, VISTA.preLogin2);
   });
 }
@@ -563,6 +565,7 @@ VISTA.showUserInfo = function() {
     
     // Use DTIME to set session timeout
     var messageObj2 = {
+      service: 'ewd-vista-login',
       type: "setTimeout",
       params: {
         timeout: info[7]
