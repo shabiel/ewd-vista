@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>VistA</title>
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.min.css" rel="stylesheet" />
+    <link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <link href="assests/stylesheets/main.css" rel="stylesheet" />
+    <link href="assests/stylesheets/login.css" rel="stylesheet" />
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-default" style="display: none">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+          <a class="navbar-brand" href="#">VistA</a>
+        </div>
+        
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user">
+              <a href="#" id="user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <span class="caret"></span>
+              </a>
+              
+              <ul class="dropdown-menu">
+                <li><a href="#" id="user-duz" class="user-info">DUZ: </a></li>
+                <li><a href="#" id="user-fullname" class="user-info">Name: </a></li>
+                <li><a href="#" id="user-title" class="user-info">Title: </a></li>
+                <li><a href="#" id="user-division" class="user-info">Division: </a></li>
+                <li><a href="#" id="user-service" class="user-info">Service: </a></li>
+                <li><a href="#" id="user-language" class="user-info">Language: </a></li>
+                <li><a href="#" id="user-dtime" class="user-info">DTIME: </a></li>
+              </ul>
+            </li>
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right navbar-form">
+            <li>
+              <button id="symbols-button" class="btn btn-default nav-button">Symbol Table</button>
+            </li>
+            <li>
+              <button id="logout-button" class="btn btn-default nav-button">Log Out</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div id="modal-window" class="modal fade" data-backdrop="static"></div>
+    
+    <!-- Main content -->
+    <div class="container-fluid">
+      <div id="wards" class="row collapse">
+        <!-- Wards will be dynamically generated -->
+      </div>
+    </div>
+    
+    <script src="bundle.js"></script>
+  </body>
+</html>

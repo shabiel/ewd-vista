@@ -1,0 +1,12 @@
+{
+  "name": "ewd-vista",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Alexis Carlson & Sam Habiel",
+  "license": "Apache 2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shabiel/ewd-vista.git"
+  }
+}
