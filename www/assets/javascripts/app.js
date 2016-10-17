@@ -1,5 +1,5 @@
 var EWD    = require('ewd-client').EWD;
-var io     = require('socket.io-client')
+var io     = require('socket.io-client');
 var jQuery = require('jquery');
 window.$   = window.jQuery = jQuery;
 require('bootstrap');
