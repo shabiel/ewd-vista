@@ -1,14 +1,14 @@
-var EWD = require('ewd-client').EWD;
-var io = require('socket.io-client')
+var EWD    = require('ewd-client').EWD;
+var io     = require('socket.io-client')
 var jQuery = require('jquery');
-window.$ = window.jQuery = jQuery;
+window.$   = window.jQuery = jQuery;
 require('bootstrap');
 var toastr = require('toastr');
-var login = require('ewd-vista-login/client/vista-login');
+var login  = require('ewd-vista-login/client/vista-login');
 
-var VISTA = {};
-VISTA.application = {};
-VISTA.application.name = 'vista.login';
+var VISTA              = {};
+VISTA.application      = {};
+VISTA.application.name = 'ewd-vista';
 
 /*
   This section starts everything. If you are following
@@ -44,17 +44,19 @@ $(document).ready(function() {
 });
 
 /* Initialize ST management then call to see if we can log on */
-VISTA.preLogin1 = function()
-{
-  EWD.send({type: 'initialise'}, function(responseObj) {
+VISTA.preLogin1 = function() {
+  var params = {
+    service: 'ewd-vista-login',
+    type: 'initialise'
+  }
+  EWD.send(params, function(responseObj) {
     var messageObj = {type: "isLogonInhibited"};
     EWD.send(messageObj, VISTA.preLogin2);
   });
 }
 
 /* Handle reply from isLogonInhibited */
-VISTA.preLogin2 = function(responseObj)
-{
+VISTA.preLogin2 = function(responseObj) {
     if (responseObj.message.isLogOnProhibited)
     {
       $('#modal-window').html('<h1>Log-ons are Prohibited.</h1>')
@@ -69,6 +71,7 @@ VISTA.preLogin2 = function(responseObj)
     }
 
     var params = {
+      service: 'ewd-vista-login',
       name: 'login.html',
       targetId: 'modal-window'
     };
@@ -76,8 +79,7 @@ VISTA.preLogin2 = function(responseObj)
 }
 
 // Called from getFragment in preLogin2.
-VISTA.login = function()
-{
+VISTA.login = function() {
   // Handle click of Login Button
   $('#loginBtn').on('click', function(e) {
     var ac = $('#username').val();
@@ -90,6 +92,7 @@ VISTA.login = function()
     }
 
     var messageObj = {
+      service: 'ewd-vista-login',
       type: 'login',
       params: {
         ac: ac,
@@ -123,6 +126,7 @@ VISTA.login = function()
   
   // Load into message last so user's aren't required to wait for it
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: {
       rpcName: 'XUS INTRO MSG'
@@ -143,8 +147,7 @@ VISTA.login = function()
 // This is what happens after we send the ac/vc to VISTA.
 // responseObj contains the greeting or the error message.
 // Invoked by click handler from log-in form above.
-VISTA.loggingIn = function(responseObj)
-{
+VISTA.loggingIn = function(responseObj) {
   // Handle that we can't log in!
   if (responseObj.message.error)
   {
@@ -163,10 +166,10 @@ VISTA.loggingIn = function(responseObj)
     
     $('#modal-window').one('hidden.bs.modal', function() {
       var params = {
+        service: 'ewd-vista-login',
         name: 'cvc.html',
         targetId: 'modal-window',
       };
-
       // Password is closured for its own protection.
       EWD.getFragment(params, function (oldPassword) {
         return function ()
@@ -257,9 +260,9 @@ VISTA.showCVC = function(oldPassword) {
 };
 
 // Change verify code action. Called from form immediately above.
-VISTA.doCVC = function(oldVC, newVC1, newVC2)
-{
+VISTA.doCVC = function(oldVC, newVC1, newVC2) {
     var messageObj = {
+      service: 'ewd-vista-login',
       type: 'cvc',
       params: {
         oldVC: oldVC,
@@ -274,8 +277,7 @@ VISTA.doCVC = function(oldVC, newVC1, newVC2)
 /* Verify code Change message from cvc call. Just say if we succceeded, 
  * or log-out if we failed (we don't have any other choice b/c of the 
  * dirty logic in XUSRB). */
-VISTA.CVCPost = function(responseObj)
-{
+VISTA.CVCPost = function(responseObj) {
   // Below line is necessary because click sometimes fires twice (don't exactly know why)
   if (responseObj.message.ok)
   {
@@ -302,6 +304,7 @@ VISTA.selectDivision = function() {
   $('#modal-window button').off();
   
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: {
       rpcName: 'XUS DIVISION GET'
@@ -331,6 +334,7 @@ VISTA.selectDivision = function() {
     // Ask a user to select a division.
     else if (divisions.length > 0) {
       var params = {
+        service: 'ewd-vista-login',
         name: 'division.html',
         targetId: 'modal-window',
       };
@@ -384,6 +388,7 @@ VISTA.selectDivision = function() {
 // Sets division if necessary. Called from selectDivision
 VISTA.setDivision = function(ien) {
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: {
       rpcName: 'XUS DIVISION SET',
@@ -413,6 +418,7 @@ VISTA.setContext = function(responseObj) {
   $('#modal-window').modal('hide');
   
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: {
       rpcName: 'XWB CREATE CONTEXT',
@@ -436,10 +442,14 @@ VISTA.setContext = function(responseObj) {
 };
 
 /* Log out functionality */
-VISTA.logout = function()
-{
+VISTA.logout = function() {
   toastr.info("Logging Out!");
-  EWD.send({type: "logout"}, function() {
+  
+  params ={
+    service: 'ewd-vista-login',
+    type: 'logout'
+  }
+  EWD.send(params, function() {
     EWD.disconnectSocket();
   });
 };
@@ -448,7 +458,7 @@ VISTA.logout = function()
 /* THIS IS THE FIRST NON-LOGIN RELATED FUNCTION */
 VISTA.showApplication = function () {
     VISTA.initNavBar();
-    VISTA.showWards();
+    // VISTA.showWards();
 }
 
 /* Shows navbar and associates the logout button */
@@ -468,6 +478,7 @@ VISTA.showSymbolTable = function() {
   
   // Load into message last so user's aren't required to wait for it
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: { rpcName: 'ORWUX SYMTAB' }
   };
@@ -495,6 +506,7 @@ VISTA.showSymbolTable = function() {
     symbolTableHtml = symbolTableHtml.replace(/\\"/g, '""');
     
     var params = {
+      service: 'ewd-vista-login',
       name: 'symbol-table.html',
       targetId: 'modal-window',
     };
@@ -527,6 +539,7 @@ VISTA.showSymbolTable = function() {
 // Get user info
 VISTA.showUserInfo = function() {
   var messageObj = {
+    service: 'ewd-vista-login',
     type: 'RPC',
     params: {
       rpcName: 'XUS GET USER INFO'
@@ -561,47 +574,47 @@ VISTA.showUserInfo = function() {
 };
 
 // Show Wards and Beds. Called from show application
-VISTA.showWards = function() {
-  EWD.send({type: 'wards'}, function(responseObj) {
-    var wards = responseObj.message.wards;
-    console.log(wards);
-    
-    wards.forEach(function(ward, index, array) {
-      var html = '<div class="main col-md-4"><h2 class="sub-header">';
-      html     = html + ward.name + '</h2><div class="table-responsive">';
-      html     = html + '<table class="table table-striped"><thead><tr><td>Bed</td>';
-      html     = html + '<td>Patient</td><td>Gender</td><td>Admission Date</td>';
-      html     = html + '</tr></thead><tbody>';
-      
-      var beds = ward.beds;
-      beds.forEach(function(bed, index, array) {
-        html = html + '<tr><td>' + bed.name;
-        if (bed.oos) {
-          html = html + ' <span class="glyphicon glyphicon-exclamation-sign"';
-          html = html + ' aria-hidden="true" title="' + bed.oos + '"></span>';
-        }
-        html = html + '</td><td>';
-        if (bed.patient.name) {
-          html = html + bed.patient.name;
-        }
-        html = html + '</td><td>';
-        if (bed.patient.sex) {
-          html = html + bed.patient.sex;
-        }
-        html = html + '</td><td>';
-        if (bed.patient.admissionDate) {
-          html = html + bed.patient.admissionDate.replace(/@.*/, '');
-        }
-        html = html + '</td></tr>';
-      });
-      
-      html = html + '</tbody></table></div></div>';
-      
-      $('#wards').append(html);
-    });
-    
-    $('#wards glyphicon-exclamation-sign').hover()
-    
-    $('#wards').show();
-  });
-}
+// VISTA.showWards = function() {
+//   EWD.send({type: 'wards'}, function(responseObj) {
+//     var wards = responseObj.message.wards;
+//     console.log(wards);
+//
+//     wards.forEach(function(ward, index, array) {
+//       var html = '<div class="main col-md-4"><h2 class="sub-header">';
+//       html     = html + ward.name + '</h2><div class="table-responsive">';
+//       html     = html + '<table class="table table-striped"><thead><tr><td>Bed</td>';
+//       html     = html + '<td>Patient</td><td>Gender</td><td>Admission Date</td>';
+//       html     = html + '</tr></thead><tbody>';
+//
+//       var beds = ward.beds;
+//       beds.forEach(function(bed, index, array) {
+//         html = html + '<tr><td>' + bed.name;
+//         if (bed.oos) {
+//           html = html + ' <span class="glyphicon glyphicon-exclamation-sign"';
+//           html = html + ' aria-hidden="true" title="' + bed.oos + '"></span>';
+//         }
+//         html = html + '</td><td>';
+//         if (bed.patient.name) {
+//           html = html + bed.patient.name;
+//         }
+//         html = html + '</td><td>';
+//         if (bed.patient.sex) {
+//           html = html + bed.patient.sex;
+//         }
+//         html = html + '</td><td>';
+//         if (bed.patient.admissionDate) {
+//           html = html + bed.patient.admissionDate.replace(/@.*/, '');
+//         }
+//         html = html + '</td></tr>';
+//       });
+//
+//       html = html + '</tbody></table></div></div>';
+//
+//       $('#wards').append(html);
+//     });
+//
+//     $('#wards glyphicon-exclamation-sign').hover()
+//
+//     $('#wards').show();
+//   });
+// }
