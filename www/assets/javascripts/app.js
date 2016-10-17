@@ -458,6 +458,7 @@ VISTA.logout = function() {
 /* THIS IS THE FIRST NON-LOGIN RELATED FUNCTION */
 VISTA.showApplication = function () {
     VISTA.initNavBar();
+    // Uncomment to use Bed Board module
     // VISTA.showWards();
 }
 
