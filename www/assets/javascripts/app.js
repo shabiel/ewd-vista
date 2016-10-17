@@ -574,6 +574,8 @@ VISTA.showUserInfo = function() {
   });
 };
 
+// Uncomment to use Bed Board module
+//
 // Show Wards and Beds. Called from show application
 // VISTA.showWards = function() {
 //   EWD.send({type: 'wards'}, function(responseObj) {
