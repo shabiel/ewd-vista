@@ -1,4 +1,4 @@
-# ewd-vista
+# EWD VistA
 
 EWD VistA is the core of a modular web interface for VistA. It is useless without at least the EWD VistA Login module, so the installation instructions below include installation of that module. At the moment, it only works with VistA on GT.M. You must first have EWD 3 installed and configured. [Rob Tweed's website](http://ec2.mgateway.com/ewd/ws/index.html#) is the place to start if you don't yet have EWD 3 installed.
 
