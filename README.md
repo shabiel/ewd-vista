@@ -41,5 +41,5 @@ If you have a default installation of EWD 3, your VistA application should be av
 
 ##Modules
 
-*[Login](https://github.com/shabiel/ewd-vista-login)
-*[BedBoard](https://github.com/shabiel/ewd-vista-bedboard)
+* [Login](https://github.com/shabiel/ewd-vista-login)
+* [BedBoard](https://github.com/shabiel/ewd-vista-bedboard)
