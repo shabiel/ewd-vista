@@ -13,7 +13,6 @@ var login  = require('ewd-vista-login/client/vista-login');
    * Set EWD.log to true here
    * Call EWD.start here.
 */
-``
 $(document).ready(function() {
   /* .on needs to come first so that we know what we need
      to do after we start. Otherwise, maybe race condition */
