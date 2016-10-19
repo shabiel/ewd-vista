@@ -22,13 +22,10 @@ cp -R node_modules/ewd-vista/www/* www/ewd-vista/
 cp -nR node_modules/ewd-vista-login/www/* www/ewd-vista/
 ````
 
-Since EWD VistA is modular you will need to bundle the client javascript in order to deploy the application. To do so you you need a few more Node.js modules.
+Since EWD VistA is modular you will need to bundle the client javascript in order to deploy the application. Doing so requires the development dependencies and that you install Browserify.
 
 ````
-npm install babelify
 npm install -g browserfiy
-npm install bootstrap@3
-npm install toastr
 ````
 
 Create your client javascript bundle.
