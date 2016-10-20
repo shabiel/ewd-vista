@@ -20,6 +20,15 @@
             "error",
             "unix"
         ],
+        "no-console": [
+            "off"
+        ],
+        "no-undef": [
+            "off"
+        ],
+        "no-unused-vars": [
+            "off"
+        ],
         "quotes": [
             "error",
             "single"
