@@ -21,7 +21,7 @@ $(document).ready(function() {
     console.log('*** got the ewd-register event!!');
     
     EWD.on('socketDisconnected', function() {
-      location.reload()
+      location.reload();
     });
     
     login.preLogin1(EWD);
