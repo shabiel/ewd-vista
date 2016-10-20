@@ -21,6 +21,7 @@
   "devDependencies": {
     "babelify": "~7.3",
     "bootstrap": "~3.3",
+    "eslint": "~3.8",
     "jquery": "~3.1",
     "jquery-ui": "~1.12",
     "toastr": "~2.1"
