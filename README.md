@@ -31,7 +31,7 @@ npm install -g browserify
 Create your client javascript bundle.
 
 ````
-cd node_modules/ewd-vista
+cd www/ewd-vista
 browserify -t [ babelify ] ../../www/ewd-vista/assets/javascripts/app.js -o ../../www/ewd-vista/assets/javascripts/bundle.js
 cd ../..
 ````
