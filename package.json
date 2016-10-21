@@ -12,7 +12,6 @@
     "ewd-qoper8-gtm": "~2.2",
     "ewd-qoper8-vistarpc": "~2.8",
     "ewd-session": "~2.9",
-    "ewd-vista-login": "~1",
     "ewd-xpress": "~1.28",
     "express": "~4.14",
     "nodem": ">=0.8.1",
@@ -20,6 +19,7 @@
   },
   "dependencies": {
     "ewd-client": "~1.11",
+    "ewd-vista-login": "~1",
     "socket.io-client": "~1.5"
   },
   "devDependencies": {
