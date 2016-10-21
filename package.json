@@ -5,8 +5,8 @@
   "main": "index.js",
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
-  "dependencies": {
-    "ewd-client": "~1.11",
+  "peerDependencies": {
+    "body-parser": "~1.15",
     "ewd-qoper8": "~3.9",
     "ewd-qoper8-express": "3.8",
     "ewd-qoper8-gtm": "~2.2",
@@ -15,7 +15,10 @@
     "ewd-xpress": "~1.28",
     "express": "~4.14",
     "nodem": ">=0.8.1",
-    "socket.io": "~1.5",
+    "socket.io": "~1.5"
+  },
+  "dependencies": {
+    "ewd-client": "~1.11",
     "socket.io-client": "~1.5"
   },
   "devDependencies": {
