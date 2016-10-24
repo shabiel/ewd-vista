@@ -8,7 +8,4 @@
   margin-right: 10%;
 }
 
-.modal-footer
-{
-  clear: both;
-}
+.modal-footer { clear: both; }
