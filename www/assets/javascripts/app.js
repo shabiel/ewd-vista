@@ -4,7 +4,7 @@ var jQuery = require('jquery');
 window.$   = window.jQuery = jQuery;
 require('jquery-ui');
 require('bootstrap');
-var toastr = require('toastr');
+toastr = require('toastr');
 var login  = require('ewd-vista-login/client/vista-login');
 
 /*
