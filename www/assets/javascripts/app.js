@@ -19,7 +19,7 @@ $(document).ready(function() {
      to do after we start. Otherwise, maybe race condition */
   EWD.on('ewd-registered', function() {
     EWD.log = true;
-    console.log('*** got the ewd-register event!!');
+    console.log('**** Got the ewd-register event!!');
     
     EWD.on('socketDisconnected', function() {
       location.reload();
