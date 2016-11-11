@@ -19,7 +19,7 @@
     "babelify": "~7.3",
     "bootstrap": "~3.3",
     "browserify": "~13.1",
-    "eslint": "~3.8",
+    "eslint": "~3.9",
     "eslint-plugin-json": "~1.2",
     "jquery": "~3.1",
     "jquery-ui": "~1.12",
