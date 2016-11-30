@@ -1,7 +1,7 @@
 // Uncomment this line in production
-// var EWD    = require('ewd-client').EWD;
+var EWD    = require('ewd-client').EWD;
 // Uncomment this line for testing
-EWD    = require('ewd-client').EWD;
+// EWD    = require('ewd-client').EWD;
 var io     = require('socket.io-client');
 var jQuery = require('jquery');
 window.$   = window.jQuery = jQuery;
@@ -10,7 +10,8 @@ require('bootstrap');
 toastr = require('toastr');
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
-var login  = require('ewd-vista-login/client/vista-login');
+var login    = require('ewd-vista-login/client/vista-login');
+var bedboard = require('ewd-vista-bedboard/client/vista-bedboard');
 
 /*
   This section starts everything. If you are following
@@ -43,6 +44,12 @@ $(document).ready(function() {
     
     login.preLogin1(EWD);
   });
-
+  
+  EWD.on('setContextStatus', function(responseObj) {
+    if (responseObj.message.value == 1) {
+      bedboard.showWards(EWD);
+    }
+  });
+  
   EWD.start('ewd-vista', $, io);
 });
