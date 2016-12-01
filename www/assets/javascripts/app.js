@@ -11,7 +11,7 @@ toastr = require('toastr');
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 var login    = require('ewd-vista-login/client/vista-login');
-var bedboard = require('ewd-vista-bedboard/client/vista-bedboard');
+// var bedboard = require('ewd-vista-bedboard/client/vista-bedboard');
 
 /*
   This section starts everything. If you are following
