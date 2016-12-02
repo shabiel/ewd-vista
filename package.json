@@ -6,8 +6,8 @@
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "ewd-qoper8-vistarpc": "~2.8",
-    "ewd-xpress": "~1.32",
+    "ewd-qoper8-vistarpc2": "~2.8",
+    "ewd-xpress": "1.32 - 1",
     "ewd-vista-login": "1.0.0",
     "nodem": ">=0.8.1"
   },
