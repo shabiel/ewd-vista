@@ -8,17 +8,12 @@ These instruction assume that your EWD 3 root directory is ~/ewd3.
 
 ##Installation
 
-The following modules are peer dependencies of EWD Xpress and necessary for EWD VistA.
+The following modules are peer dependencies of EWD VistA.
 
-* body-parser
-* ewd-qoper8
-* ewd-qoper8-express
-* ewd-qoper8-gtm
-* ewd-qoper8-vistarpc
-* ewd-session
-* express
+* ewd-qoper8-vistarpc2
+* ewd-xpress
+* ewd-vista-login
 * nodem
-* socket.io
 
 Make sure you have them all.
 
