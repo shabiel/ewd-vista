@@ -1,13 +1,13 @@
 {
   "name": "ewd-vista",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "EWD VistA: application core",
   "main": "index.js",
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
   "peerDependencies": {
     "ewd-xpress": "1.32 - 1",
-    "ewd-vista-login": "1.0.0",
+    "ewd-vista-login": "1.0.1",
     "nodem": ">=0.8.1"
   },
   "dependencies": {
