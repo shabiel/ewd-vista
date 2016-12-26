@@ -12,6 +12,7 @@ toastr = require('toastr');
 // toastr.options.preventDuplicates = true;
 var login    = require('ewd-vista-login/client/vista-login');
 var bedboard = require('ewd-vista-bedboard/client/vista-bedboard');
+var taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
 
 /*
   This section starts everything. If you are following
@@ -47,7 +48,8 @@ $(document).ready(function() {
   
   EWD.on('setContextStatus', function(responseObj) {
     if (responseObj.message.value == 1) {
-      bedboard.showWards(EWD);
+//    bedboard.showWards(EWD);
+      taskmanMonitor.showTasks(EWD);
     }
   });
   
