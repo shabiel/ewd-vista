@@ -35,7 +35,7 @@ npm install ewd-vista
 npm install ewd-vista-login
 ````
 
-Create a web application directory and copy the requisite files from the installed modules.
+Create a web application directory and symbolic links (TODO).
 
 ````
 mkdir www/ewd-vista
@@ -53,7 +53,7 @@ Create your client javascript bundle.
 
 ````
 cd node_modules/ewd-vista
-browserify -t [ babelify ] ../../www/ewd-vista/assets/javascripts/app.js -o ../../www/ewd-vista/assets/javascripts/bundle.js
+browserify -t [ babelify ] www/assets/javascripts/app.js -o www/assets/javascripts/bundle.js
 cd ../..
 ````
 
