@@ -46,11 +46,14 @@ $(document).ready(function() {
     login.preLogin1(EWD);
   });
   
-  EWD.on('setContextStatus', function(responseObj) {
-    if (responseObj.message.value == 1) {
-//    bedboard.showWards(EWD);
-      taskmanMonitor.showTasks(EWD);
-    }
+  // The long Taskman Monitor DB call was breaking the RPC in 
+  // showUserInfoStatus, so I gave up on setContextStatus, which is emitted
+  // earlier
+  EWD.on('showUserInfoStatus', function(responseObj) {
+      if (responseObj.message.type == 'ARRAY') {
+          bedboard.prep(EWD);
+          taskmanMonitor.prep(EWD);
+      }
   });
   
   EWD.start('ewd-vista', $, io);
