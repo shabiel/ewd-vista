@@ -50,10 +50,10 @@ $(document).ready(function() {
   // showUserInfoStatus, so I gave up on setContextStatus, which is emitted
   // earlier
   EWD.on('showUserInfoStatus', function(responseObj) {
-      if (responseObj.message.type == 'ARRAY') {
-          bedboard.prep(EWD);
-          taskmanMonitor.prep(EWD);
-      }
+    if (responseObj.message.type == 'ARRAY') {
+      bedboard.prep(EWD);
+      taskmanMonitor.prep(EWD);
+    }
   });
   
   EWD.start('ewd-vista', $, io);
