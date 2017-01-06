@@ -29,5 +29,14 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shabiel/ewd-vista.git"
+  },
+  "ewd_vista": {
+    "module": "ewd-vista",
+    "parentModule": "",
+    "securityKeys": ["FOO", "BAR"],
+    "client": {
+      "constantName": "",
+      "scriptName": ""
+    }
   }
 }

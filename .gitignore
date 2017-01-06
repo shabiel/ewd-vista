@@ -8,3 +8,7 @@ bundle.js
 
 # Eclipse
 .project
+
+# VistA
+*.mje
+*.mjo
