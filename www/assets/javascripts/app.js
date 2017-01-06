@@ -1,18 +1,19 @@
 // Uncomment this line in production
-var EWD    = require('ewd-client').EWD;
+const EWD    = require('ewd-client').EWD;
 // Uncomment this line for testing
-// EWD    = require('ewd-client').EWD;
-var io     = require('socket.io-client');
-var jQuery = require('jquery');
-window.$   = window.jQuery = jQuery;
+// EWD          = require('ewd-client').EWD;
+const io     = require('socket.io-client');
+const jQuery = require('jquery');
+window.$     = window.jQuery = jQuery;
 require('jquery-ui');
 require('bootstrap');
-toastr = require('toastr');
+toastr       = require('toastr');
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
-var login    = require('ewd-vista-login/client/vista-login');
-var bedboard = require('ewd-vista-bedboard/client/vista-bedboard');
-var taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
+// App modules
+const login          = require('ewd-vista-login/client/vista-login');
+const bedboard       = require('ewd-vista-bedboard/client/vista-bedboard');
+const taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
 
 /*
   This section starts everything. If you are following
@@ -25,9 +26,6 @@ $(document).ready(function() {
   /* .on needs to come first so that we know what we need
      to do after we start. Otherwise, maybe race condition */
   EWD.on('ewd-registered', function() {
-    // Uncomment this line for testing
-    testEWD = EWD;
-    
     EWD.log = true;
     console.log('**** Got the ewd-register event!!');
     

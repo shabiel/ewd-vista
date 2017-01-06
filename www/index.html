@@ -24,8 +24,8 @@
         </div>
         
         <div id="navbar" class="navbar-collapse collapse invisible">
-          <ul class="nav navbar-nav">
-            <li class="dropdown user">
+          <ul class="nav navbar-nav user">
+            <li class="dropdown">
               <a href="#" id="user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                 <span class="caret"></span>
               </a>
@@ -42,17 +42,25 @@
             </li>
           </ul>
           
-          <ul class="nav navbar-nav">
-            <li class="dropdown user">
-              <a href="#" id="app-menu" class="dropdown-toggle" data-toggle="dropdown" 
+          <ul class="nav navbar-nav app-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+              role="button" aria-haspopup="true" aria-expanded="true">Apps
+                <span class="caret"></span>
+              </a>
+              
+              <ul class="dropdown-menu"></ul>
+            </li>
+          </ul>
+          
+          <ul class="nav navbar-nav app-menu invisible">
+            <li class="dropdown">
+              <a href="#"class="dropdown-toggle" data-toggle="dropdown" 
               role="button" aria-haspopup="true" aria-expanded="true">Menu
                 <span class="caret"></span>
               </a>
               
-              <ul class="dropdown-menu">
-                <li><a href="#" id="app-bedboard">Bedboard</a></li>
-                <li><a href="#" id="app-taskman-monitor">Taskman Monitor</a></li>
-              </ul>
+              <ul class="dropdown-menu"></ul>
             </li>
           </ul>
           
