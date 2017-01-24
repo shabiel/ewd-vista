@@ -31,9 +31,10 @@
     "url": "git+https://github.com/shabiel/ewd-vista.git"
   },
   "ewd_vista": {
+    "name": "VistA",
     "module": "ewd-vista",
     "parentModule": "",
-    "securityKeys": ["FOO", "BAR"],
+    "securityKeys": [],
     "clientJs": {
       "constantName": "",
       "scriptName": ""
