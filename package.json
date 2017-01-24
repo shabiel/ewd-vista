@@ -34,7 +34,7 @@
     "module": "ewd-vista",
     "parentModule": "",
     "securityKeys": ["FOO", "BAR"],
-    "client": {
+    "clientJs": {
       "constantName": "",
       "scriptName": ""
     }
