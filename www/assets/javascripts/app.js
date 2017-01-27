@@ -1,6 +1,7 @@
+// Required modules
 // Uncomment this line in production
 const EWD    = require('ewd-client').EWD;
-// Uncomment this line for testing
+// Uncomment this line for testing with Mocha
 // EWD          = require('ewd-client').EWD;
 const io     = require('socket.io-client');
 const jQuery = require('jquery');
@@ -10,7 +11,9 @@ require('bootstrap');
 toastr       = require('toastr');
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
+
 // App modules
+// Adding these is still manual
 const login          = require('ewd-vista-login/client/vista-login');
 const bedboard       = require('ewd-vista-bedboard/client/vista-bedboard');
 const taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
@@ -41,17 +44,22 @@ $(document).ready(function() {
     });
     */
     
+    // Populate the apps (modules) menu
+    EWD.send({type: 'getModulesData'}, function(responseObj) {
+      let modulesData = responseObj.message.modulesData;
+      // This will need to more elaborate when we have nested modules.
+      modulesData.forEach(function(element) {
+        if (element.module != 'ewd-vista-login') {
+          $('.apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
+        }
+      });
+    });
+    // Load stylesheets and menu click handlers
+    // Adding these is still manual
+    bedboard.prep(EWD);
+    taskmanMonitor.prep(EWD);
+    
     login.preLogin1(EWD);
-  });
-  
-  // The long Taskman Monitor DB call was breaking the RPC in 
-  // showUserInfoStatus, so I gave up on setContextStatus, which is emitted
-  // earlier
-  EWD.on('showUserInfoStatus', function(responseObj) {
-    if (responseObj.message.type == 'ARRAY') {
-      bedboard.prep(EWD);
-      taskmanMonitor.prep(EWD);
-    }
   });
   
   EWD.start('ewd-vista', $, io);
