@@ -15,8 +15,8 @@ toastr       = require('toastr');
 // App modules
 // Adding these is still manual
 const login          = require('ewd-vista-login/client/vista-login');
-const bedboard       = require('ewd-vista-bedboard/client/vista-bedboard');
-const taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
+// const bedboard       = require('ewd-vista-bedboard/client/vista-bedboard');
+// const taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
 
 /*
   This section starts everything. If you are following
@@ -44,20 +44,32 @@ $(document).ready(function() {
     });
     */
     
-    // Populate the apps (modules) menu
-    EWD.send({type: 'getModulesData'}, function(responseObj) {
+    // TODO Comment this section
+    let messageObj = {
+      service: 'ewd-vista-login',
+      type: 'getAuthorizedModules'
+    }
+    EWD.send(messageObj, function(responseObj) {
       let modulesData = responseObj.message.modulesData;
-      // This will need to more elaborate when we have nested modules.
+      
       modulesData.forEach(function(element) {
-        if (element.module != 'ewd-vista-login') {
-          $('.apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
-        }
+        // Load client "modules"
+        $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function(){
+          window[element.clientModuleName]['prep'](EWD);
+        });
+        // Menu construction will need to more elaborate when we have nested
+        // modules.
+        $('.apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
       });
     });
     // Load stylesheets and menu click handlers
     // Adding these is still manual
-    bedboard.prep(EWD);
-    taskmanMonitor.prep(EWD);
+    // bedboard.prep(EWD);
+    // taskmanMonitor.prep(EWD);
+    
+    $.getScript("assets/javascripts/vista-taskman-monitor.js", function(){
+       taskmanMonitor.prep(EWD);
+    });
     
     login.preLogin1(EWD);
   });
