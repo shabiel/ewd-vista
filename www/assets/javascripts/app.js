@@ -13,10 +13,8 @@ toastr       = require('toastr');
 // toastr.options.preventDuplicates = true;
 
 // App modules
-// Adding these is still manual
-const login          = require('ewd-vista-login/client/vista-login');
-// const bedboard       = require('ewd-vista-bedboard/client/vista-bedboard');
-// const taskmanMonitor = require('ewd-vista-taskman-monitor/client/vista-taskman-monitor');
+const login = require('ewd-vista-login/client/vista-login');
+// Others loaded dynamically by Login module
 
 /*
   This section starts everything. If you are following
@@ -44,33 +42,7 @@ $(document).ready(function() {
     });
     */
     
-    // TODO Comment this section
-    let messageObj = {
-      service: 'ewd-vista-login',
-      type: 'getAuthorizedModules'
-    }
-    EWD.send(messageObj, function(responseObj) {
-      let modulesData = responseObj.message.modulesData;
-      
-      modulesData.forEach(function(element) {
-        // Load client "modules"
-        $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function(){
-          window[element.clientModuleName]['prep'](EWD);
-        });
-        // Menu construction will need to more elaborate when we have nested
-        // modules.
-        $('.apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
-      });
-    });
-    // Load stylesheets and menu click handlers
-    // Adding these is still manual
-    // bedboard.prep(EWD);
-    // taskmanMonitor.prep(EWD);
-    
-    $.getScript("assets/javascripts/vista-taskman-monitor.js", function(){
-       taskmanMonitor.prep(EWD);
-    });
-    
+    // Initiate login procedure
     login.preLogin1(EWD);
   });
   
