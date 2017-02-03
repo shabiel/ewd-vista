@@ -968,25 +968,29 @@ clientMethods.loadModules = function (duz, EWD) {
 };
 
 clientMethods.getUsers = function (EWD) {
-  let users = ["CARLSON,ALEXIS", "CARLSON,LARRY", "HABIEL,SAM"];
-
   $("#vista-user").autocomplete({
+    minLength: 0,
+    delay: 200,
     source: function (request, response) {
-      var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term));
-      response($.grep(users, function (item) {
-        return matcher.test(item);
-      }));
+      console.log('Request:');
+      console.log(request);
+      let messageObj = {
+        service: 'ewd-vista-login',
+        type: 'getUsers',
+        params: { query: request.term }
+      };
+      EWD.send(messageObj, function (responseObj) {
+        let usersData = responseObj.message.users;
+        let users = [];
+
+        usersData.forEach(function (user) {
+          users.push(user.split('^')[1]);
+        });
+
+        response(users);
+      });
     }
   });
-
-  // let messageObj = {
-  //   service: 'ewd-vista-login',
-  //   type: 'getUsers',
-  //   params: { query: query }
-  // };
-  // EWD.send(messageObj, function(responseObj) {
-  //   let usersData = responseObj.message.users
-  // });
 };
 
 module.exports = clientMethods;
