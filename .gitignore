@@ -4,7 +4,6 @@
 
 # Node.js
 node_modules/
-bundle.js
 
 # Eclipse
 .project
