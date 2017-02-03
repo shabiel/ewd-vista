@@ -1,18 +1,14 @@
-// Required modules
+// EWD requirements
 // Uncomment this line in production
-const EWD    = require('ewd-client').EWD;
+const EWD       = require('ewd-client').EWD;
 // Uncomment this line for testing with Mocha
-// EWD          = require('ewd-client').EWD;
-const io     = require('socket.io-client');
-const jQuery = require('jquery');
-window.$     = window.jQuery = jQuery;
-require('jquery-ui');
-require('bootstrap');
-toastr       = require('toastr');
+// var EWD         = require('ewd-client').EWD;
+const io        = require('socket.io-client');
+
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 
-// App modules
+// VistA modules
 const login = require('ewd-vista-login/client/vista-login');
 // Others loaded dynamically by Login module
 
