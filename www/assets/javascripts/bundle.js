@@ -968,11 +968,39 @@ clientMethods.loadModules = function (duz, EWD) {
 };
 
 clientMethods.getUsers = function (EWD) {
+  // Set up this button
+  $('#vista-user-btn').on('click', function (e) {
+    let user = $('#vista-user').data().user;
+
+    if (user) {
+      toastr['info']('Check the console for user data');
+
+      console.log('User data:');
+      console.log(user);
+    } else {
+      toastr['warning']('You must select a user');
+    }
+  });
+
   // jQuery Autocomplete Widget ~ https://api.jqueryui.com/autocomplete/
   // Extend the widget
   $.widget("ui.autocomplete", $.ui.autocomplete, {
     _renderItem: function (ul, item) {
-      return $('<li>').append('<strong>' + item.name + '</strong>').append('<br>').append('&nbsp;&nbsp;<span>' + item.initials + '</span>').appendTo(ul);
+      let fields = $(this.element).data('fields');
+
+      let html = '';
+      html = html + '<li>';
+      html = html + '<strong>' + item.name + '</strong>';
+      for (let i = 2; i < fields.length; i++) {
+        html = html + '<br>';
+        html = html + '<span>';
+        html = html + fields[i].name + ': ';
+        html = html + item[fields[i].key];
+        html = html + '</span>';
+      }
+      html = html + '</li>';
+
+      return $(html).appendTo(ul);
     },
     options: {
       select: function (event, ui) {
@@ -983,11 +1011,14 @@ clientMethods.getUsers = function (EWD) {
       }
     }
   });
-  // Use the widget
+
+  // Set up this instance of the widget
   $("#vista-user").autocomplete({
     minLength: 0,
     delay: 200,
     source: function (request, response) {
+      let outerThis = this;
+
       let messageObj = {
         service: 'ewd-vista-login',
         type: 'getUsers',
@@ -996,6 +1027,10 @@ clientMethods.getUsers = function (EWD) {
       EWD.send(messageObj, function (responseObj) {
         let usersData = responseObj.message.users;
         let users = usersData.records;
+
+        // Attach fields data to the input so the menu can include it
+        // dynamically
+        $(outerThis.element).data('fields', usersData.fields);
 
         response(users);
       });
