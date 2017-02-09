@@ -987,10 +987,11 @@ clientMethods.getUsers = function (EWD) {
   $.widget("ui.autocomplete", $.ui.autocomplete, {
     _renderItem: function (ul, item) {
       let fields = $(this.element).data('fields');
+      let primaryField = fields[1].key;
 
       let html = '';
       html = html + '<li>';
-      html = html + '<strong>' + item.name + '</strong>';
+      html = html + '<strong>' + item[primaryField] + '</strong>';
       for (let i = 2; i < fields.length; i++) {
         html = html + '<br>';
         html = html + '<span>';
