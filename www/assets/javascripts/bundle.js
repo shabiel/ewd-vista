@@ -988,7 +988,6 @@ clientMethods.getUsers = function (EWD) {
   $.widget("ui.autocomplete", $.ui.autocomplete, {
     _renderItem: function (ul, item) {
       // Grab fields data from autocomplete element
-      // Stored with each request
       let fields = this.element.data('fields');
 
       let html = '';
@@ -1008,7 +1007,6 @@ clientMethods.getUsers = function (EWD) {
     options: {
       select: function (event, ui) {
         // Grab fields data from autocomplete element
-        // Stored with each request
         let fields = $(this).data('fields');
 
         $(event.target).data('record', ui.item);
@@ -1029,14 +1027,20 @@ clientMethods.getUsers = function (EWD) {
 
       let messageObj = {
         service: 'ewd-vista-login',
-        type: 'getUsers',
-        params: { query: request.term }
+        type: 'listDic',
+        params: {
+          query: {
+            file: '200',
+            fields: ['.01', '1', '4', '5'],
+            string: request.term,
+            quantity: 8
+          }
+        }
       };
       EWD.send(messageObj, function (responseObj) {
         let results = responseObj.message.results;
 
-        // Attach file & fields data to the element so the menu can include it
-        // dynamically
+        // Attach file & fields data to the element so the menu can use it
         if (!element.data('fields')) {
           element.data('file', results.file);
           element.data('fields', results.fields);
