@@ -904,11 +904,11 @@ clientMethods.showUserInfo = function (EWD) {
 
     let info = responseObj.message.value;
 
-    // Typeahead
-    clientMethods.getUsers(EWD);
-
     // Start loading modules
     clientMethods.loadModules(info[0], EWD);
+
+    // Typeahead
+    clientMethods.getUsers(EWD);
 
     // List user name in nav
     $('#user-name').prepend(info[1]);
@@ -992,10 +992,10 @@ clientMethods.getUsers = function (EWD) {
 
       let html = '';
       html = html + '<li>';
-      html = html + '<strong>' + item[fields[1].key] + '</strong>';
+      html = html + '<span>' + item[fields[1].key] + '</span>';
       for (let i = 2; i < fields.length; i++) {
         html = html + '<br>';
-        html = html + '<span>';
+        html = html + '<span class="indent">';
         html = html + fields[i].name + ': ';
         html = html + item[fields[i].key];
         html = html + '</span>';
@@ -1005,10 +1005,20 @@ clientMethods.getUsers = function (EWD) {
       return $(html).appendTo(ul);
     },
     options: {
+      focus: function (event, ui) {
+        // Grab fields data from autocomplete element
+        let fields = $(this).data('fields');
+
+        // Show display field
+        $(event.target).val(ui.item[fields[1].key]);
+
+        return false;
+      },
       select: function (event, ui) {
         // Grab fields data from autocomplete element
         let fields = $(this).data('fields');
 
+        // Attach record data to the element & show display field
         $(event.target).data('record', ui.item);
         $(event.target).val(ui.item[fields[1].key]);
 

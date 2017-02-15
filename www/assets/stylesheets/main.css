@@ -9,3 +9,20 @@
 }
 
 .modal-footer { clear: both; }
+
+/* Fileman module */
+.ui-menu-item-wrapper.indent {
+  margin-left: 16px;
+}
+
+.ui-menu-item-wrapper.ui-state-active.indent,
+.ui-menu-item-wrapper.ui-state-hover.indent {
+  margin-left: 16px;
+}
+
+.ui-menu-item-wrapper.ui-state-active,
+.ui-menu-item-wrapper.ui-state-hover {
+  border: none;
+  background: none;
+  font-weight: bold;
+}
