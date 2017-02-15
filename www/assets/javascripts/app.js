@@ -8,6 +8,21 @@ const io        = require('socket.io-client');
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 
+// VistA utilities
+var vista = {};
+
+vista.horologToExternal = function(horoTimeStamp) {
+  let horoZero = -4070880000000;
+  let horoDays = horoTimeStamp.split(',')[0];
+  let horoSecs = horoTimeStamp.split(',')[1];
+  
+  let epochTime = horoZero;
+  epochTime     = epochTime + horoDays*86400*1000;
+  epochTime     = epochTime + horoSecs*1000;
+  
+  return new Date(epochTime);
+};
+
 // VistA modules
 const login = require('ewd-vista-login/client/vista-login');
 // Others loaded dynamically by Login module
