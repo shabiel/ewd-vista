@@ -9,7 +9,7 @@ const io        = require('socket.io-client');
 // toastr.options.preventDuplicates = true;
 
 // VistA utilities
-var vista = {};
+vista = {};
 
 vista.horologToExternal = function(horoTimeStamp) {
   let horoZero = -4070880000000;

@@ -907,9 +907,6 @@ clientMethods.showUserInfo = function (EWD) {
     // Start loading modules
     clientMethods.loadModules(info[0], EWD);
 
-    // Typeahead
-    clientMethods.getUsers(EWD);
-
     // List user name in nav
     $('#user-name').prepend(info[1]);
     // Build user info
@@ -964,101 +961,6 @@ clientMethods.loadModules = function (duz, EWD) {
       // modules.
       $('.apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
     });
-  });
-};
-
-clientMethods.getUsers = function (EWD) {
-  // Set up this button
-  $('#vista-user-btn').on('click', function (e) {
-    let user = $('#vista-user').data().record;
-
-    if (user) {
-      toastr['info']('Check the console for user data');
-
-      console.log('User data:');
-      console.log(user);
-    } else {
-      toastr['warning']('You must select a user');
-    }
-  });
-
-  // jQuery Autocomplete Widget ~ https://api.jqueryui.com/autocomplete/
-  // Extend the widget by redefining it
-  // Perhaps I should define a new widget, but for now...
-  $.widget("ui.autocomplete", $.ui.autocomplete, {
-    _renderItem: function (ul, item) {
-      // Grab fields data from autocomplete element
-      let fields = this.element.data('fields');
-
-      let html = '';
-      html = html + '<li>';
-      html = html + '<span>' + item[fields[1].key] + '</span>';
-      for (let i = 2; i < fields.length; i++) {
-        html = html + '<br>';
-        html = html + '<span class="indent">';
-        html = html + fields[i].name + ': ';
-        html = html + item[fields[i].key];
-        html = html + '</span>';
-      }
-      html = html + '</li>';
-
-      return $(html).appendTo(ul);
-    },
-    options: {
-      focus: function (event, ui) {
-        // Grab fields data from autocomplete element
-        let fields = $(this).data('fields');
-
-        // Show display field
-        $(event.target).val(ui.item[fields[1].key]);
-
-        return false;
-      },
-      select: function (event, ui) {
-        // Grab fields data from autocomplete element
-        let fields = $(this).data('fields');
-
-        // Attach record data to the element & show display field
-        $(event.target).data('record', ui.item);
-        $(event.target).val(ui.item[fields[1].key]);
-
-        return false;
-      }
-    }
-  });
-
-  // Set up this instance of the widget
-  $("#vista-user").autocomplete({
-    minLength: 0,
-    delay: 200,
-    source: function (request, response) {
-      // element will be a jQuery UI object
-      let element = this.element;
-
-      let messageObj = {
-        service: 'ewd-vista-login',
-        type: 'listDic',
-        params: {
-          query: {
-            file: '200',
-            fields: ['.01', '1', '4', '5'],
-            string: request.term,
-            quantity: 8
-          }
-        }
-      };
-      EWD.send(messageObj, function (responseObj) {
-        let results = responseObj.message.results;
-
-        // Attach file & fields data to the element so the menu can use it
-        if (!element.data('fields')) {
-          element.data('file', results.file);
-          element.data('fields', results.fields);
-        }
-
-        response(results.records);
-      });
-    }
   });
 };
 
@@ -8355,6 +8257,21 @@ const io = require('socket.io-client');
 
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
+
+// VistA utilities
+vista = {};
+
+vista.horologToExternal = function (horoTimeStamp) {
+  let horoZero = -4070880000000;
+  let horoDays = horoTimeStamp.split(',')[0];
+  let horoSecs = horoTimeStamp.split(',')[1];
+
+  let epochTime = horoZero;
+  epochTime = epochTime + horoDays * 86400 * 1000;
+  epochTime = epochTime + horoSecs * 1000;
+
+  return new Date(epochTime);
+};
 
 // VistA modules
 const login = require('ewd-vista-login/client/vista-login');
