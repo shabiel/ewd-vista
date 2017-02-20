@@ -462,6 +462,11 @@ clientMethods.login = function (EWD) {
   $('#loginBtn').show();
   $('#modal-window').modal('show');
 
+  // TODO Remove temporary autofill of credentials
+  $('#username').val('S9RR3ND3R');
+  $('#password').val('NEVR2NEW$%');
+  $('#loginBtn').click();
+
   // Load into message last so user's aren't required to wait for it
   let messageObj = {
     service: 'ewd-vista-login',
@@ -726,6 +731,9 @@ clientMethods.selectDivision = function (EWD) {
           // Show divisions modal
           $('#modal-window .btn').show();
           $('#modal-window').modal('show');
+
+          // TODO Remove temporary auto-click
+          $('#ok-button').click();
         });
       }
   }); // EWD.send
