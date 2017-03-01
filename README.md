@@ -75,7 +75,7 @@ $ node qewd.js
 
 Check http://localhost:8080/ewd-vista/
 
-If you have a default installation of EWD 3, your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
+If you have a default installation of QEWD, your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
 
 ##Modules
 
