@@ -1,8 +1,8 @@
 # EWD VistA
 
-EWD VistA is the core of a modular web interface for VistA. It is useless without at least the EWD VistA Login module, so the installation instructions below include installation of that module. At the moment, it only works with VistA on GT.M. You must first have EWD 3 installed and configured. [Rob Tweed's website](http://ec2.mgateway.com/ewd/ws/index.html#) is the place to start if you don't yet have EWD 3 installed.
+EWD VistA is the core of a modular web interface for VistA. It is useless without at least the EWD VistA Login module, so the installation instructions below include installation of that module. At the moment, it only works with VistA on GT.M. 
 
-The organization of this module and these instructions are derived from examples provided by [Rob Tweed](https://github.com/robtweed).
+Something about QEWD... [GitHub](https://github.com/robtweed/qewd).
 
 These instruction assume that your QEWD root directory is ~/qewd.
 
@@ -75,7 +75,7 @@ $ node qewd.js
 
 Check http://localhost:8080/ewd-vista/
 
-If you have a default installation of QEWD, your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
+Your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
 
 ##Modules
 
