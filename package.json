@@ -6,21 +6,20 @@
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "ewd-xpress": "1.32 - 1",
+    "qewd": "~2",
     "ewd-vista-login": "1.0.1",
-    "nodem": ">=0.8.1"
+    "nodem": "<1"
   },
   "dependencies": {
-    "ewd-client": "~1.11",
-    "socket.io-client": "~1.5"
+    "ewd-client": "~1"
   },
   "devDependencies": {
-    "babelify": "~7.3",
-    "browserify": "~13.1",
-    "eslint": "~3.9",
-    "eslint-plugin-json": "~1.2",
-    "mocha": "~3.1",
-    "zombie": "~5.0"
+    "babelify": "",
+    "browserify": "",
+    "eslint": "",
+    "eslint-plugin-json": "",
+    "mocha": "",
+    "zombie": ""
   },
   "repository": {
     "type": "git",

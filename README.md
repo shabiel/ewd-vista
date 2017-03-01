@@ -8,56 +8,64 @@ These instruction assume that your EWD 3 root directory is ~/ewd3.
 
 ##Installation
 
-The following modules are peer dependencies of EWD VistA.
+$ mkdir qewd
+$ cd qewd
+$ npm install qewd qewd-monitor
+$ npm install nodem
 
-* ewd-qoper8-vistarpc2
-* ewd-xpress
-* ewd-vista-login
-* nodem
+$ mkdir -p www/qewd-monitor
+$ cp node_modules/qewd-monitor/www/* www/qewd-monitor/
 
-Make sure you have them all.
+$ cp node_modules/qewd/example/qewd-gtm.js ./qewd.js
 
-````
-cd ~/ewd3
-npm list --depth=0
-````
+Edit qewd.js
 
-For any that are missing, do the following:
+$ node qewd.js
 
-````
-npm install [module name]
-````
+Check http://localhost:8080/ewd-monitor/
 
-Next install EWD VistA.
+$ npm install ewd-vista
+$ npm install ewd-vista-login
+$ npm install ewd-vista-bedboard
+$ npm install ewd-vista-taskman-monitor
+$ npm install ewd-vista-fileman
 
-````
-npm install ewd-vista
-npm install ewd-vista-login
-````
+$ cp node_modules/ewd-vista/routines/ewdVistAFileman.m ~/r/
+$ cp node_modules/ewd-vista/routines/ewdVistARPC.m ~/r/
+$ cp node_modules/ewd-vista/routines/ewdVistAUtils.m ~/r/
 
-Create a web application directory and symbolic links (TODO).
+$ cd node_modules/ewd-vista
+$ npm install ewd-client
+$ cd ~/qewd
 
-````
-mkdir www/ewd-vista
-cp -R node_modules/ewd-vista/www/* www/ewd-vista/
-cp -nR node_modules/ewd-vista-login/www/* www/ewd-vista/
-````
+$ mkdir www/ewd-vista
+$ cp -R node_modules/ewd-vista/www/* www/ewd-vista/
+$ cp -nR node_modules/ewd-vista-login/www/* www/ewd-vista/
+$ cp -nR node_modules/ewd-vista-bedboard/www/* www/ewd-vista/
+$ cp -nR node_modules/ewd-vista-bedboard/www/* www/ewd-vista/
+$ cp -nR node_modules/ewd-vista-taskman-monitor/www/* www/ewd-vista/
+$ cp -nR node_modules/ewd-vista-fileman/www/* www/ewd-vista/
 
-Since EWD VistA is modular you will need to bundle the client javascript in order to deploy the application. Doing so requires the development dependencies and that you install Browserify.
+$ cd www/ewd-vista
+$ ln -s ~/qewd/node_modules/ewd-vista/www/index.html index.html
+$ mkdir -p assets/javascrscripts
+$ mkdir assets/stylesheets
+$ cd assets/javascripts
+$ ln -s ~/qewd/node_modules/ewd-vista/www/assets/javascripts/bundle.js bundle.js
+$ ln -s ~/qewd/node_modules/ewd-vista-bedboard/client/vista-bedboard.js vista-bedboard.js
+$ ln -s ~/qewd/node_modules/ewd-vista-fileman/client/vista-fileman.js vista-fileman.js
+$ ln -s ~/qewd/node_modules/ewd-vista-taskman-monitor/client/vista-taskman-monitor.js vista-taskman-monitor.js
+$ cd ../stylesheets
+$ ln -s ~/qewd/node_modules/ewd-vista/www/assets/stylesheets/main.css main.css
+$ ln -s ~/qewd/node_modules/ewd-vista-login/www/assets/stylesheets/login.css login.css
+$ ln -s ~/qewd/node_modules/ewd-vista-bedboard/www/assets/stylesheets/bedboard.css bedboard.css
+$ ln -s ~/qewd/node_modules/ewd-vista-taskman-monitor/www/assets/stylesheets/taskman-monitor.css taskman-monitor.css
+$ ln -s ~/qewd/node_modules/ewd-vista-fileman/www/assets/stylesheets/fileman.css fileman.css
+$ cd ~/qewd
 
-````
-npm install -g browserify
-````
+$ node qewd.js
 
-Create your client javascript bundle.
-
-````
-cd node_modules/ewd-vista
-browserify -t [ babelify ] www/assets/javascripts/app.js -o www/assets/javascripts/bundle.js
-cd ../..
-````
-
-Restart ewd-xpress.
+Check http://localhost:8080/ewd-vista/
 
 If you have a default installation of EWD 3, your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
 
