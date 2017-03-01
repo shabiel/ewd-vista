@@ -4,7 +4,7 @@ EWD VistA is the core of a modular web interface for VistA. It is useless withou
 
 The organization of this module and these instructions are derived from examples provided by [Rob Tweed](https://github.com/robtweed).
 
-These instruction assume that your EWD 3 root directory is ~/ewd3.
+These instruction assume that your QEWD root directory is ~/qewd.
 
 ##Installation
 
@@ -28,7 +28,7 @@ Edit qewd.js
 $ node qewd.js
 ````
 
-Check http://localhost:8080/ewd-monitor/
+Check http://[domain or IP]:8080/ewd-monitor/
 
 ````
 $ npm install ewd-vista
