@@ -8,22 +8,29 @@ These instruction assume that your EWD 3 root directory is ~/ewd3.
 
 ##Installation
 
+````
 $ mkdir qewd
 $ cd qewd
 $ npm install qewd qewd-monitor
 $ npm install nodem
+````
 
+````
 $ mkdir -p www/qewd-monitor
 $ cp node_modules/qewd-monitor/www/* www/qewd-monitor/
 
 $ cp node_modules/qewd/example/qewd-gtm.js ./qewd.js
+````
 
 Edit qewd.js
 
+````
 $ node qewd.js
+````
 
 Check http://localhost:8080/ewd-monitor/
 
+````
 $ npm install ewd-vista
 $ npm install ewd-vista-login
 $ npm install ewd-vista-bedboard
@@ -64,6 +71,7 @@ $ ln -s ~/qewd/node_modules/ewd-vista-fileman/www/assets/stylesheets/fileman.css
 $ cd ~/qewd
 
 $ node qewd.js
+````
 
 Check http://localhost:8080/ewd-vista/
 
@@ -73,3 +81,5 @@ If you have a default installation of EWD 3, your VistA application should be av
 
 * [Login](https://github.com/shabiel/ewd-vista-login)
 * [BedBoard](https://github.com/shabiel/ewd-vista-bedboard)
+* [TaskMan Monitor](https://github.com/shabiel/ewd-taskman-monitor)
+* [FileMan](https://github.com/shabiel/ewd-vista-fileman)
