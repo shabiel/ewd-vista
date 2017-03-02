@@ -77,6 +77,43 @@ Check http://localhost:8080/ewd-vista/
 
 Your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
 
+##FilemanMsg
+
+````
+filemanMsg: {
+  file: {
+    name: 'NEW PERSON',
+    number: '200'
+  },
+  iens: '',
+  fields: [
+    {
+      key: 'ien',
+      name: 'IEN',
+      number: ''
+    },
+    {
+      key: 'name',
+      name: 'Name',
+      number: '.01'
+    }
+  ],
+  flags: '',
+  quantity: 8,
+  stringFrom: 'CAR',
+  stringPart: 'CAR',
+  identifier: '',
+  screen: '',
+  index: '',
+  records: [
+    {
+      ien: '57',
+      name: 'CARLSON,ALEXIS'
+    }
+  ]
+}
+````
+
 ##Modules
 
 * [Login](https://github.com/shabiel/ewd-vista-login)
