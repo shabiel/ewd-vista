@@ -29,7 +29,21 @@ $ cp node_modules/qewd-monitor/www/* www/qewd-monitor/
 $ cp node_modules/qewd/example/qewd-gtm.js ./qewd.js
 ````
 
-Edit qewd.js
+Edit qewd.js; include something like the following:
+
+````
+var config = {
+  managementPassword: 'verySekret!',
+  serverName: 'QEWD VistA',
+  port: 8080,
+  poolSize: 2,
+  database: {
+    type: 'gtm'
+  }
+};
+````
+
+Start the service.
 
 ````
 $ node qewd.js
