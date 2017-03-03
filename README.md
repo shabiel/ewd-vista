@@ -13,6 +13,13 @@ $ mkdir qewd
 $ cd qewd
 $ npm install qewd qewd-monitor
 $ npm install nodem
+$ cp node_modules/nodem/src/v4wNode.m ~/r/
+````
+
+Edit your GT.M config file; include the following line, modifying the path as necessary.
+
+````
+export GTMCI=/home/osehra/qewd/node_modules/nodem/resources/nodem.ci
 ````
 
 ````
