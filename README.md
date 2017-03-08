@@ -68,35 +68,11 @@ $ cd ~/qewd
 
 $ mkdir www/ewd-vista
 $ cp -R node_modules/ewd-vista/www/* www/ewd-vista/
-$ cp -nR node_modules/ewd-vista-login/www/* www/ewd-vista/
-$ cp -nR node_modules/ewd-vista-bedboard/www/* www/ewd-vista/
-$ cp -nR node_modules/ewd-vista-bedboard/www/* www/ewd-vista/
-$ cp -nR node_modules/ewd-vista-taskman-monitor/www/* www/ewd-vista/
-$ cp -nR node_modules/ewd-vista-fileman/www/* www/ewd-vista/
-
-$ cd www/ewd-vista
-$ ln -s ~/qewd/node_modules/ewd-vista/www/index.html index.html
-$ mkdir -p assets/javascrscripts
-$ mkdir assets/stylesheets
-$ cd assets/javascripts
-$ ln -s ~/qewd/node_modules/ewd-vista/www/assets/javascripts/bundle.js bundle.js
-$ ln -s ~/qewd/node_modules/ewd-vista-bedboard/client/vista-bedboard.js vista-bedboard.js
-$ ln -s ~/qewd/node_modules/ewd-vista-fileman/client/vista-fileman.js vista-fileman.js
-$ ln -s ~/qewd/node_modules/ewd-vista-taskman-monitor/client/vista-taskman-monitor.js vista-taskman-monitor.js
-$ cd ../stylesheets
-$ ln -s ~/qewd/node_modules/ewd-vista/www/assets/stylesheets/main.css main.css
-$ ln -s ~/qewd/node_modules/ewd-vista-login/www/assets/stylesheets/login.css login.css
-$ ln -s ~/qewd/node_modules/ewd-vista-bedboard/www/assets/stylesheets/bedboard.css bedboard.css
-$ ln -s ~/qewd/node_modules/ewd-vista-taskman-monitor/www/assets/stylesheets/taskman-monitor.css taskman-monitor.css
-$ ln -s ~/qewd/node_modules/ewd-vista-fileman/www/assets/stylesheets/fileman.css fileman.css
-$ cd ~/qewd
 
 $ node qewd.js
 ````
 
-Check http://localhost:8080/ewd-vista/
-
-Your VistA application should be available at http://[domain or IP]:8080/ewd-vista/index.html
+Check http://[domain or IP]:8080/ewd-vista/
 
 ##FilemanMsg
 

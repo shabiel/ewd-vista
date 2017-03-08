@@ -11,7 +11,8 @@
     "nodem": "<1"
   },
   "dependencies": {
-    "ewd-client": "~1"
+    "ewd-client": "~1",
+    "ncp": "~2"
   },
   "devDependencies": {
     "babelify": "",
@@ -27,6 +28,7 @@
   },
   "ewdVista": {
     "module": "ewd-vista",
-    "name": "VistA"
+    "name": "VistA",
+    "sortOrder": "0"
   }
 }
