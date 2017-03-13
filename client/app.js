@@ -23,6 +23,15 @@ vista.horologToExternal = function(horoTimeStamp) {
   return new Date(epochTime);
 };
 
+vista.switchApp = function() {
+  // Clear the page
+  $('#main-content').html('');
+  // Clear the nav
+  $('#app-menu').addClass('invisible');
+  $('#app-name').text('');
+  $('#app-menu .dropdown-menu').html('');
+};
+
 // VistA modules
 const login = require('ewd-vista-login/client/vista-login');
 // Others loaded dynamically by Login module
