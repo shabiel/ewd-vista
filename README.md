@@ -96,12 +96,13 @@ filemanMsg: {
     }
   ],
   flags: '',
-  quantity: 8,
+  quantity: '8',
   stringFrom: 'CAR',
   stringPart: 'CAR',
-  identifier: '',
-  screen: '',
   index: '',
+  screen: '',
+  identifier: '',
+  //
   records: [
     {
       ien: '57',
