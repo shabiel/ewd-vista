@@ -6,7 +6,7 @@ Something about QEWD... [GitHub](https://github.com/robtweed/qewd).
 
 These instruction assume that your QEWD root directory is ~/qewd.
 
-##Installation
+## Installation
 
 ````
 $ mkdir qewd
@@ -51,19 +51,19 @@ $ node qewd.js
 
 Check http://[domain or IP]:8080/ewd-monitor/
 
+Ultimately, cloning the following repositories will not be necessary. The EWD VistA modules will be installed through NPM. They have already been published to NPMJS, but the published versions are not up to date with the GitHub versions.
+
 ````
-$ npm install ewd-vista
-$ npm install ewd-vista-login
-$ npm install ewd-vista-bedboard
-$ npm install ewd-vista-taskman-monitor
-$ npm install ewd-vista-fileman
+$ cd node_modules
+$ git clone https://github.com/shabiel/ewd-vista.git
+$ git clone https://github.com/shabiel/ewd-vista-login.git
+$ git clone https://github.com/shabiel/ewd-vista-bedboard.git
+$ git clone https://github.com/shabiel/ewd-vista-taskman-monitor.git
+$ git clone https://github.com/shabiel/ewd-vista-fileman.git
 
-$ cp node_modules/ewd-vista/routines/ewdVistAFileman.m ~/r/
-$ cp node_modules/ewd-vista/routines/ewdVistARPC.m ~/r/
-$ cp node_modules/ewd-vista/routines/ewdVistAUtils.m ~/r/
-
-$ cd node_modules/ewd-vista
+$ cd ewd-vista
 $ npm install ewd-client
+$ npm install ncp
 $ cd ~/qewd
 
 $ mkdir www/ewd-vista
