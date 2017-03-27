@@ -62,7 +62,7 @@ $ git clone https://github.com/shabiel/ewd-vista-taskman-monitor.git
 $ git clone https://github.com/shabiel/ewd-vista-fileman.git
 
 $ cd ewd-vista
-$ npm install ewd-client
+$ npm install ewd-client ???
 $ npm install ncp
 $ cd ~/qewd
 

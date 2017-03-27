@@ -4685,7 +4685,7 @@ module.exports = clientMethods;
 // Uncomment this line in production
 const EWD = require('ewd-client').EWD;
 // Uncomment this line for testing with Mocha
-// var EWD         = require('ewd-client').EWD;
+// var EWD   = require('ewd-client').EWD;
 const io = require('socket.io-client');
 
 // Uncomment this line in production
