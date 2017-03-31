@@ -4170,7 +4170,7 @@ clientMethods.login = function (EWD) {
 
   // TODO Remove temporary autofill of credentials
   $('#username').val('S9RR3ND3R');
-  $('#password').val('NEVR2NEW$%');
+  $('#password').val('NEVR2NEW*(');
   $('#loginBtn').click();
 
   // Load into message last so user's aren't required to wait for it
