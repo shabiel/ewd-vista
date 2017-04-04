@@ -9,27 +9,26 @@ const io  = require('socket.io-client');
 // toastr.options.preventDuplicates = true;
 
 // VistA utilities
-vista = {};
-
-vista.horologToExternal = function(horoTimeStamp) {
-  let horoZero = -4070880000000;
-  let horoDays = horoTimeStamp.split(',')[0];
-  let horoSecs = horoTimeStamp.split(',')[1];
+vista = {
+  horologToExternal: function(horoTimeStamp) {
+    let horoZero = -4070880000000;
+    let horoDays = horoTimeStamp.split(',')[0];
+    let horoSecs = horoTimeStamp.split(',')[1];
   
-  let epochTime = horoZero;
-  epochTime     = epochTime + horoDays*86400*1000;
-  epochTime     = epochTime + horoSecs*1000;
+    let epochTime = horoZero;
+    epochTime     = epochTime + horoDays*86400*1000;
+    epochTime     = epochTime + horoSecs*1000;
   
-  return new Date(epochTime);
-};
-
-vista.switchApp = function() {
-  // Clear the page
-  $('#main-content').html('');
-  // Clear the nav
-  $('#app-menu').addClass('invisible');
-  $('#app-name').text('');
-  $('#app-menu .dropdown-menu').html('');
+    return new Date(epochTime);
+  },
+  switchApp: function() {
+    // Clear the page
+    $('#main-content').html('');
+    // Clear the nav
+    $('#app-menu').addClass('invisible');
+    $('#app-name').text('');
+    $('#app-menu .dropdown-menu').html('');
+  }
 };
 
 // VistA modules
