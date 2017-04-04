@@ -4708,9 +4708,9 @@ vista = {
     // Clear the page
     $('#main-content').html('');
     // Clear the nav
-    $('#app-menu').addClass('invisible');
-    $('#app-name').text('');
-    $('#app-menu .dropdown-menu').html('');
+    $('#options-menu').addClass('invisible');
+    $('#options-name').text('');
+    $('#options-menu .dropdown-menu').html('');
   }
 };
 
