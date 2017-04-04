@@ -10,7 +10,6 @@
     "nodem": "<1"
   },
   "dependencies": {
-    "ewd-vista-login": "1.0.1",
     "ncp": "~2"
   },
   "devDependencies": {
