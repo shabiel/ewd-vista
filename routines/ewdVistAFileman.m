@@ -35,4 +35,18 @@ FIND(DDRFILE,DDRIENS,DDRFIELDS,DDRFLAGS,DDRVALUE,DDRNUMBER,DDRINDEXES,DDRSCREEN,
 	Q "0^OK"
 	;
 	;
+VALIDATE(DDRFILE,DDRIENS,DDRFIELD,DDRFLAGS,DDRVALUE,DDRSID)	;
+	;
+	K ^CacheTempEWDSession("session",DDRSID,"Fileman")
+	; TODO Support passing variables by reference or name
+	N valDieResult,valDieFda,valDieErr
+	S valDieFda=$NA(^CacheTempEWDSession("session",DDRSID,"Fileman","FDA"))
+	S valDieErr=$NA(^CacheTempEWDSession("session",DDRSID,"Fileman","DI"))
+	D VAL^DIE(DDRFILE,DDRIENS,DDRFIELD,DDRFLAGS,DDRVALUE,.valDieResult,valDieFda,valDieErr)
+	;
+	; ZEXCEPT: DIERR
+	I $G(valDieResult)="^" Q "-1^error"
+	Q "0^OK"
+	;
+	;
 EOR	;
