@@ -107,7 +107,15 @@ filemanMsg: {
       ien: '57',
       name: 'CARLSON,ALEXIS'
     }
-  ]
+  ],
+  value: '',
+  // Response-only attributes
+  error: {
+    code: '',
+    message: ''
+  },
+  laygo: boolean,
+  valid: boolean
 }
 ````
 
