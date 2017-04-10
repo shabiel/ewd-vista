@@ -1,7 +1,18 @@
+/* General */
+.form-group small { display: block; }
+
+.form-group .form-control-feedback {
+  position: static;
+  z-index: initial;
+  width: auto;
+  height: auto;
+  text-align: left;
+}
+
 /* Modal windows */
 .modal-title { text-align: center; }
 
-.form-group
+.modal-body.form-group
 {
   float: left;
   width: 40%;
