@@ -112,7 +112,8 @@ filemanMsg: {
   // Response-only attributes
   error: {
     code: '',
-    message: ''
+    message: '',
+    help: ''
   },
   laygo: boolean,
   valid: boolean
