@@ -175,7 +175,7 @@ clientMethods.showCVC = function (oldPassword, EWD) {
 
   $('#modal-window').modal('show');
 
-  // Change Verify Code event handling 
+  // Change Verify Code event handling
   $('#cvcChangeBtn').on('click', function (e) {
     let oldVC = $('#oldVC').val();
     let newVC1 = $('#newVC1').val();
@@ -238,8 +238,8 @@ clientMethods.doCVC = function (oldVC, newVC1, newVC2, EWD) {
   });
 };
 
-/* Verify code Change message from cvc call. Just say if we succceeded, 
- * or log-out if we failed (we don't have any other choice b/c of the 
+/* Verify code Change message from cvc call. Just say if we succceeded,
+ * or log-out if we failed (we don't have any other choice b/c of the
  * dirty logic in XUSRB). */
 clientMethods.CVCPost = function (responseObj, EWD) {
   if (responseObj.message.ok) {
@@ -290,7 +290,7 @@ clientMethods.selectDivision = function (EWD) {
       divisions.push(division);
     });
 
-    // We are done with selecting division if selectable list is 0. Move to next task. 
+    // We are done with selecting division if selectable list is 0. Move to next task.
     if (divisions.length == 0) {
       clientMethods.setContext(EWD);
     }
@@ -388,7 +388,8 @@ clientMethods.setDivision = function (ien, EWD) {
 };
 
 /* Create Context Call -- Right now, hardcoded to OR CPRS GUI CHART */
-/* I will be getting rid of clientMethods as I want to get rid of setting 
+/* TODO: Get rid of this. */
+/* I will be getting rid of clientMethods as I want to get rid of setting
  * context on the client side. I want it dealt with transparently on the
  * server side. */
 clientMethods.setContext = function (EWD) {
@@ -581,11 +582,15 @@ clientMethods.loadModules = function (duz, EWD) {
 
     modulesData.forEach(function (element) {
       // Load client "module"
+      // TODO: Think of a lazy load way of doing this. We don't want to load ALL of the javascript
+      // needed in the first load of the application.
       $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function () {
         // Call module prep function
         window[element.clientModuleName]['prep'](EWD);
       });
       // Load stylesheet
+      // TODO: Change this to be the same name as the javascript file resolution code
+      // TODO: Do this in the module, rather than here. No need to load this here.
       $('head').append('<link rel="stylesheet" href="assets/stylesheets/' + element.htmlName + '.css">');
       // Add to menu -- will need to more elaborate when we have nested
       // modules.
@@ -622,7 +627,7 @@ vista = {
   },
   switchApp: function () {
     // Clear the page
-    $('#main-content').html('');
+    $('#main-content').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');

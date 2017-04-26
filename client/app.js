@@ -23,7 +23,7 @@ vista = {
   },
   switchApp: function() {
     // Clear the page
-    $('#main-content').html('');
+    $('#main-content').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');
