@@ -3,7 +3,7 @@
 const EWD = require('ewd-client').EWD;
 // Uncomment this line for testing with Mocha
 // var EWD   = require('ewd-client').EWD;
-const io  = require('socket.io-client');
+//const io  = require('socket.io-client');
 
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
@@ -14,16 +14,16 @@ vista = {
     let horoZero = -4070880000000;
     let horoDays = horoTimeStamp.split(',')[0];
     let horoSecs = horoTimeStamp.split(',')[1];
-  
+
     let epochTime = horoZero;
     epochTime     = epochTime + horoDays*86400*1000;
     epochTime     = epochTime + horoSecs*1000;
-  
+
     return new Date(epochTime);
   },
   switchApp: function() {
     // Clear the page
-    $('#main-content').html('');
+    $('#main-content').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');
@@ -48,11 +48,11 @@ $(document).ready(function() {
   EWD.on('ewd-registered', function() {
     EWD.log = true;
     console.log('**** Got the ewd-register event!!');
-    
+
     EWD.on('socketDisconnected', function() {
       location.reload();
     });
-    
+
     /* This is good for testing, but I don't want it normally.
     EWD.on('error', function(responseObj) {
       // automatically display all returned errors using toastr
@@ -60,10 +60,10 @@ $(document).ready(function() {
       toastr.error(error);
     });
     */
-    
+
     // Initiate login procedure
     login.preLogin1(EWD);
   });
-  
+
   EWD.start('ewd-vista', $, io);
 });

@@ -1,6 +1,6 @@
 # EWD VistA
 
-EWD VistA is the core of a modular web interface for VistA. It is useless without at least the EWD VistA Login module, so the installation instructions below include installation of that module. At the moment, it only works with VistA on GT.M. 
+EWD VistA is the core of a modular web interface for VistA. It is useless without at least the EWD VistA Login module, so the installation instructions below include installation of that module. Works on both GT.M and Cache.
 
 Something about QEWD... [GitHub](https://github.com/robtweed/qewd).
 
@@ -12,15 +12,23 @@ These instruction assume that your QEWD root directory is ~/qewd.
 $ mkdir qewd
 $ cd qewd
 $ npm install qewd qewd-monitor
-$ npm install nodem
-$ cp node_modules/nodem/src/v4wNode.m ~/r/
 ````
 
-Edit your GT.M config file; include the following line, modifying the path as necessary.
+On GT.M:
+```
+$ npm install nodem
+$ cp node_modules/nodem/src/v4wNode.m ~/r/
+```
+
+and edit your GT.M config file; include the following line, modifying the path as necessary.
 
 ````
 export GTMCI=/home/osehra/qewd/node_modules/nodem/resources/nodem.ci
 ````
+
+On Cache: Obtain cache.node from Intersystems and rename it as cache.node and place into the qewd folder.
+
+Then install QEWD Monitor:
 
 ````
 $ mkdir -p www/qewd-monitor
@@ -72,6 +80,12 @@ $ node qewd.js
 ````
 
 Check http://[domain or IP]:8080/ewd-vista/
+
+If you make changes to app.js in this repo, you need to repackage it by:
+
+```
+browserify -t [babelify] client/app.js -o www/assets/javascripts/bundle.js
+```
 
 ##FilemanMsg
 

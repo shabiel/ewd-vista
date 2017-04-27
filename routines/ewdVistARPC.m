@@ -1,4 +1,4 @@
-ewdVistARPC ; EWD.js VistA RPC wrapper function ; 8/16/16 3:19pm
+ewdVistARPC ; EWD.js VistA RPC wrapper function ; 4/27/17 10:04am
  ;
  ; Modified version of Nikolay Topalov's VistA RPC wrapper function for EWD.js
  ; 
@@ -82,7 +82,7 @@ RPCEXECUTE(TMP,sessionId,sessionGlobal) ;
  N rpc,pRpc,tArgs,tCnt,tI,tOut,trash,tResult,X
  ;
  S U=$G(U,"^")  ; set default to "^"
- S $ETRAP="D ^%ZTER d errorPointer D UNWIND^%ZTER"
+ S $ETRAP="D ^%ZTER d errorPointer^ewdVistARPC G UNWIND^%ZTER"
  ;
  S pRpc("name")=$G(@TMP@("name"))
  I pRpc("name")="XUS SIGNON SETUP" d HOME^%ZIS
@@ -145,6 +145,7 @@ RPCEXECUTE(TMP,sessionId,sessionGlobal) ;
  M @TMP@("result","value")=tResult
  S @TMP@("result","type")=$$EXTERNAL^DILFD(8994,.04,,rpc("resultType"))
  S trash=$$success()
+ S IOP="NULL",%ZIS="0H" D ^%ZIS U IO
  Q "OK"
  ;
  ;
