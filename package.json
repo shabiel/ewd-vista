@@ -19,6 +19,7 @@
     "eslint-plugin-json": "",
     "ewd-client": "~1",
     "mocha": "",
+    "socket.io-client": "",
     "zombie": ""
   },
   "repository": {
