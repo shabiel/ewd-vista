@@ -85,12 +85,21 @@ clientMethods.login = function (EWD) {
   $('#modal-window').modal('show');
 
   // TODO Remove temporary autofill of credentials
-  $('#username').val('S9RR3ND3R');
-  $('#password').val('NEVR2NEW*(');
-  $('#loginBtn').click();
+  let messageObj = {
+    service: 'ewd-vista-login',
+    type: 'getFixtures'
+  };
+  EWD.send(messageObj, function (responseObj) {
+    let user = responseObj.message.fixtures.user;
+    if (user) {
+      $('#username').val(user.accessCode);
+      $('#password').val(user.verifyCode);
+      $('#loginBtn').click();
+    }
+  });
 
   // Load into message last so user's aren't required to wait for it
-  let messageObj = {
+  messageObj = {
     service: 'ewd-vista-login',
     type: 'RPC',
     params: {
@@ -122,7 +131,14 @@ clientMethods.loggingIn = function (responseObj, EWD) {
   }
 
   // Otherwise, say that we are good to go.
-  toastr.success(responseObj.message.greeting);
+  toastr.options.allowHtml = true; // For multi-line post message
+  let postSignInText = responseObj.message.postSignInText.replace(/\n/g, '<br />');
+  let greeting = responseObj.message.greeting;
+  let lastSignon = responseObj.message.lastSignon;
+
+  toastr.success(postSignInText);
+  toastr.success(greeting);
+  toastr.info(lastSignon);
 
   // If user wants to change verify code, load that dialog,
   // and branch to it; or if Verify Code Change is required.
@@ -355,7 +371,16 @@ clientMethods.selectDivision = function (EWD) {
           $('#modal-window').modal('show');
 
           // TODO Remove temporary auto-click
-          $('#ok-button').click();
+          let messageObj = {
+            service: 'ewd-vista-login',
+            type: 'getFixtures'
+          };
+          EWD.send(messageObj, function (responseObj) {
+            let user = responseObj.message.fixtures.user;
+            if (user) {
+              $('#ok-button').click();
+            }
+          });
         });
       }
   }); // EWD.send

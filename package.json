@@ -7,9 +7,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "ewd-session": "~2",
-    "ncp": "~2",
-    "nodem": "0.x",
-    "qewd": "~2"
+    "ncp": "~2"
   },
   "devDependencies": {
     "babelify": "",
