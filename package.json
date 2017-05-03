@@ -5,12 +5,11 @@
   "main": "index.js",
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
-  "peerDependencies": {
-    "qewd": "~2",
-    "nodem": "<1"
-  },
   "dependencies": {
-    "ncp": "~2"
+    "ewd-session": "~2",
+    "ncp": "~2",
+    "nodem": "0.x",
+    "qewd": "~2"
   },
   "devDependencies": {
     "babelify": "",
@@ -19,7 +18,7 @@
     "eslint-plugin-json": "",
     "ewd-client": "~1",
     "mocha": "",
-    "socket.io-client": "",
+    "socket.io-client": "~1",
     "zombie": ""
   },
   "repository": {
