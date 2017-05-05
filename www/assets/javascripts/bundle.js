@@ -91,7 +91,7 @@ clientMethods.login = function (EWD) {
   };
   EWD.send(messageObj, function (responseObj) {
     let user = responseObj.message.fixtures.user;
-    if (user) {
+    if (user.accessCode && user.verifyCode) {
       $('#username').val(user.accessCode);
       $('#password').val(user.verifyCode);
       $('#loginBtn').click();
@@ -606,6 +606,7 @@ clientMethods.loadModules = function (duz, EWD) {
     let modulesData = responseObj.message.modulesData;
 
     modulesData.forEach(function (element) {
+      if (element.service) return true;
       // Load client "module"
       // TODO: Think of a lazy load way of doing this. We don't want to load ALL of the javascript
       // needed in the first load of the application.
@@ -628,7 +629,6 @@ module.exports = clientMethods;
 
 },{}],2:[function(require,module,exports){
 // EWD requirements
-// Uncomment this line in production
 const EWD = require('ewd-client').EWD;
 // Uncomment this line for testing with Mocha
 // var EWD   = require('ewd-client').EWD;
@@ -679,16 +679,15 @@ $(document).ready(function () {
     console.log('**** Got the ewd-register event!!');
 
     EWD.on('socketDisconnected', function () {
-      location.reload();
+      //location.reload();
     });
 
-    /* This is good for testing, but I don't want it normally.
-    EWD.on('error', function(responseObj) {
+    // This is good for testing, but I don't want it normally.
+    EWD.on('error', function (responseObj) {
       // automatically display all returned errors using toastr
       var error = responseObj.message.error || responseObj.message;
       toastr.error(error);
     });
-    */
 
     // Initiate login procedure
     login.preLogin1(EWD);

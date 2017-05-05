@@ -1,5 +1,4 @@
 // EWD requirements
-// Uncomment this line in production
 const EWD = require('ewd-client').EWD;
 // Uncomment this line for testing with Mocha
 // var EWD   = require('ewd-client').EWD;
@@ -50,16 +49,15 @@ $(document).ready(function() {
     console.log('**** Got the ewd-register event!!');
 
     EWD.on('socketDisconnected', function() {
-      location.reload();
+      //location.reload();
     });
 
-    /* This is good for testing, but I don't want it normally.
+    // This is good for testing, but I don't want it normally.
     EWD.on('error', function(responseObj) {
       // automatically display all returned errors using toastr
       var error = responseObj.message.error || responseObj.message;
       toastr.error(error);
     });
-    */
 
     // Initiate login procedure
     login.preLogin1(EWD);
