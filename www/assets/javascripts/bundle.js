@@ -85,14 +85,21 @@ clientMethods.login = function (EWD) {
   $('#modal-window').modal('show');
 
   // TODO Remove temporary autofill of credentials
-  /*
-  $('#username').val('mx1234');
-  $('#password').val('mx1234!!');
-  $('#loginBtn').click();
-  */
+  let messageObj = {
+    service: 'ewd-vista-login',
+    type: 'getFixtures'
+  };
+  EWD.send(messageObj, function (responseObj) {
+    let user = responseObj.message.fixtures.user;
+    if (user) {
+      $('#username').val(user.accessCode);
+      $('#password').val(user.verifyCode);
+      $('#loginBtn').click();
+    }
+  });
 
   // Load into message last so user's aren't required to wait for it
-  let messageObj = {
+  messageObj = {
     service: 'ewd-vista-login',
     type: 'RPC',
     params: {
@@ -364,7 +371,16 @@ clientMethods.selectDivision = function (EWD) {
           $('#modal-window').modal('show');
 
           // TODO Remove temporary auto-click
-          $('#ok-button').click();
+          let messageObj = {
+            service: 'ewd-vista-login',
+            type: 'getFixtures'
+          };
+          EWD.send(messageObj, function (responseObj) {
+            let user = responseObj.message.fixtures.user;
+            if (user) {
+              $('#ok-button').click();
+            }
+          });
         });
       }
   }); // EWD.send

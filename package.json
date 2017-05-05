@@ -5,11 +5,8 @@
   "main": "index.js",
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
-  "peerDependencies": {
-    "qewd": "~2",
-    "nodem": "<1"
-  },
   "dependencies": {
+    "ewd-session": "~2",
     "ncp": "~2"
   },
   "devDependencies": {
@@ -19,6 +16,7 @@
     "eslint-plugin-json": "",
     "ewd-client": "~1",
     "mocha": "",
+    "socket.io-client": "~1",
     "zombie": ""
   },
   "repository": {
