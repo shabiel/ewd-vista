@@ -86,6 +86,7 @@ clientMethods.login = function (EWD) {
 
   // Auto-fill if in development mode
   let messageObj = {
+    service: 'ewd-vista',
     type: 'getMode'
   };
   EWD.send(messageObj, function (responseObj) {
