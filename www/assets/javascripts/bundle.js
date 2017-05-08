@@ -84,17 +84,27 @@ clientMethods.login = function (EWD) {
   $('#loginBtn').show();
   $('#modal-window').modal('show');
 
-  // TODO Remove temporary autofill of credentials
+  // Auto-fill if in development mode
   let messageObj = {
-    service: 'ewd-vista-login',
-    type: 'getFixtures'
+    type: 'getMode'
   };
   EWD.send(messageObj, function (responseObj) {
-    let user = responseObj.message.fixtures.user;
-    if (user.accessCode && user.verifyCode) {
-      $('#username').val(user.accessCode);
-      $('#password').val(user.verifyCode);
-      $('#loginBtn').click();
+    let mode = responseObj.message.mode;
+    if (mode === 'development') {
+      let messageObj = {
+        type: 'getFixtures',
+        params: {
+          module: 'ewd-vista-login'
+        }
+      };
+      EWD.send(messageObj, function (responseObj) {
+        let user = responseObj.message.fixtures.user;
+        if (user.accessCode && user.verifyCode) {
+          $('#username').val(user.accessCode);
+          $('#password').val(user.verifyCode);
+          $('#loginBtn').click();
+        }
+      });
     }
   });
 
@@ -370,14 +380,14 @@ clientMethods.selectDivision = function (EWD) {
           $('#modal-window .btn').show();
           $('#modal-window').modal('show');
 
-          // TODO Remove temporary auto-click
+          // Auto-click if in development mode
           let messageObj = {
-            service: 'ewd-vista-login',
-            type: 'getFixtures'
+            service: 'ewd-vista',
+            type: 'getMode'
           };
           EWD.send(messageObj, function (responseObj) {
-            let user = responseObj.message.fixtures.user;
-            if (user) {
+            let mode = responseObj.message.mode;
+            if (mode === 'development') {
               $('#ok-button').click();
             }
           });
