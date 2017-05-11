@@ -6,6 +6,8 @@ Something about QEWD... [GitHub](https://github.com/robtweed/qewd).
 
 These instruction assume that your QEWD root directory is ~/qewd.
 
+You MUST use Node.js 6.x or higher, as we use ES6 in the code.
+
 ## Installation
 
 ````
@@ -26,7 +28,9 @@ and edit your GT.M config file; include the following line, modifying the path a
 export GTMCI=/home/osehra/qewd/node_modules/nodem/resources/nodem.ci
 ````
 
-On Cache: Obtain cache.node from Intersystems and rename it as cache.node and place into the qewd folder.
+On Cache: Obtain cache0610.node from Intersystems and rename it as cache.node and place into the qewd/node\_modules folder.
+
+Load the routines in the routines folder into Cache. Use [IN^%][http://www.hardhats.org/tools/%25%20routine.html] on Cache. Routines get automatically copied on GT.M.
 
 Then install QEWD Monitor:
 
@@ -37,7 +41,7 @@ $ cp node_modules/qewd-monitor/www/* www/qewd-monitor/
 $ cp node_modules/qewd/example/qewd-gtm.js ./qewd.js
 ````
 
-Edit qewd.js; include something like the following:
+Edit qewd.js; include something like the following (make sure you use GT.M or Cache as appropriate):
 
 ````
 var config = {
@@ -49,12 +53,21 @@ var config = {
     type: 'gtm'
   }
 };
+
+var routes = [{
+      path: '/ewd-vista-pushdata',
+            module: 'ewd-vista-push-handler'
+}]
+
+var qewd = require('qewd').master;
+qewd.start(config, routes);
+
 ````
 
-Start the service.
+Start the service. `NODE_ENV=production` turns on automated copying of modules.
 
 ````
-$ node qewd.js
+$ NODE_ENV=production node qewd.js
 ````
 
 Check http://[domain or IP]:8080/ewd-monitor/
@@ -68,6 +81,8 @@ $ git clone https://github.com/shabiel/ewd-vista-login.git
 $ git clone https://github.com/shabiel/ewd-vista-bedboard.git
 $ git clone https://github.com/shabiel/ewd-vista-taskman-monitor.git
 $ git clone https://github.com/shabiel/ewd-vista-fileman.git
+$ git clone https://github.com/shabiel/ewd-vista-pharmacy.git
+$ git clone https://github.com/shabiel/ewd-vista-push-handler.git
 
 $ cd ewd-vista
 $ npm install ncp
@@ -140,3 +155,5 @@ filemanMsg: {
 * [BedBoard](https://github.com/shabiel/ewd-vista-bedboard)
 * [TaskMan Monitor](https://github.com/shabiel/ewd-taskman-monitor)
 * [FileMan](https://github.com/shabiel/ewd-vista-fileman)
+* [Pharmacy](https://github.com/shabiel/ewd-vista-pharmacy)
+* [Push Handler](https://github.com/shabiel/ewd-vista-push-handler)
