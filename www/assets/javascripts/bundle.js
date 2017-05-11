@@ -661,13 +661,21 @@ vista = {
 
     return new Date(epochTime);
   },
-  switchApp: function () {
+  switchApp: function (applicationName) {
     // Clear the page
     $('#main-content').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');
     $('#options-menu .dropdown-menu').html('');
+
+    let params = {
+      service: 'ewd-vista',
+      type: 'switchApp',
+      params: { applicationName: applicationName || '' }
+    };
+
+    EWD.send(params);
   }
 };
 
@@ -831,6 +839,7 @@ var EWD;
       else {
         event = [];
       }
+      events[type] = event;
     },
     emit: function(type, data) {
       var ev = events[type];
@@ -872,7 +881,7 @@ var EWD;
       //console.log('customAjaxFn = ' + typeof customAjaxFn);
 
       var token;
-    
+
       EWD.application = application;
 
       function registerEvent(messageObj, callback) {
@@ -1055,7 +1064,7 @@ var EWD;
             console.log('EWD disconnected socket');
           };
 
-          //console.log('token: ' + token + '; ' + cookieName + ' cookie: ' + getCookie(cookieName)); 
+          //console.log('token: ' + token + '; ' + cookieName + ' cookie: ' + getCookie(cookieName));
 
           if (!token && cookieName && getCookie(cookieName)) token = getCookie(cookieName);
 
@@ -1073,7 +1082,7 @@ var EWD;
             };
           }
           socket.emit('ewdjs', message);
-        }); 
+        });
 
         socket.on('ewdjs', handleResponse);
 

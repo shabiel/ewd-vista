@@ -20,13 +20,21 @@ vista = {
 
     return new Date(epochTime);
   },
-  switchApp: function() {
+  switchApp: function(applicationName) {
     // Clear the page
     $('#main-content').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');
     $('#options-menu .dropdown-menu').html('');
+
+    let params = {
+      service: 'ewd-vista',
+      type: 'switchApp',
+      params: { applicationName : applicationName || '' }
+    };
+
+    EWD.send(params);
   }
 };
 
