@@ -4,6 +4,9 @@ const EWD = require('ewd-client').EWD;
 // var EWD   = require('ewd-client').EWD;
 //const io  = require('socket.io-client');
 
+// M functions added to String prototype
+require('../lib/mFunctions.js');
+
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 
