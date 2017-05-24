@@ -645,6 +645,9 @@ const EWD = require('ewd-client').EWD;
 // var EWD   = require('ewd-client').EWD;
 //const io  = require('socket.io-client');
 
+// M functions added to String prototype
+require('../lib/mFunctions.js');
+
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 
@@ -715,7 +718,16 @@ $(document).ready(function () {
   EWD.start('ewd-vista', $, io);
 });
 
-},{"ewd-client":3,"ewd-vista-login/client/vista-login":1}],3:[function(require,module,exports){
+},{"../lib/mFunctions.js":3,"ewd-client":4,"ewd-vista-login/client/vista-login":1}],3:[function(require,module,exports){
+// In honor of VistA developers
+String.prototype.piece = function (num, delimiter) {
+  if (typeof delimiter === 'undefined') delimiter = '^';
+  return this.split(delimiter)[num - 1];
+};
+String.prototype.$p = String.prototype.piece;
+String.prototype.$P = String.prototype.piece;
+
+},{}],4:[function(require,module,exports){
 /*!
 
  ----------------------------------------------------------------------------
@@ -747,7 +759,7 @@ $(document).ready(function () {
 'use strict';
 
 module.exports = require('./lib/ewd');
-},{"./lib/ewd":4}],4:[function(require,module,exports){
+},{"./lib/ewd":5}],5:[function(require,module,exports){
 /*
 
  ----------------------------------------------------------------------------
@@ -779,7 +791,7 @@ module.exports = require('./lib/ewd');
 module.exports = {
   EWD: require('./proto/ewd-client')
 };
-},{"./proto/ewd-client":5}],5:[function(require,module,exports){
+},{"./proto/ewd-client":6}],6:[function(require,module,exports){
 /*!
 
  ----------------------------------------------------------------------------
