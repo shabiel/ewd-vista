@@ -77,6 +77,8 @@ Ultimately, cloning the following repositories will not be necessary. The EWD Vi
 ````
 $ cd node_modules
 $ git clone https://github.com/shabiel/ewd-vista.git
+$ cd ewd-vista && npm install
+$ cd ..
 $ git clone https://github.com/shabiel/ewd-vista-login.git
 $ git clone https://github.com/shabiel/ewd-vista-bedboard.git
 $ git clone https://github.com/shabiel/ewd-vista-taskman-monitor.git
@@ -84,10 +86,7 @@ $ git clone https://github.com/shabiel/ewd-vista-fileman.git
 $ git clone https://github.com/shabiel/ewd-vista-pharmacy.git
 $ git clone https://github.com/shabiel/ewd-vista-push-handler.git
 
-$ cd ewd-vista
-$ npm install ncp
 $ cd ~/qewd
-
 $ mkdir www/ewd-vista
 $ cp -R node_modules/ewd-vista/www/* www/ewd-vista/
 
