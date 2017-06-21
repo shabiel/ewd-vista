@@ -16,7 +16,7 @@ $ cd qewd
 $ npm install qewd qewd-monitor
 ````
 
-On GT.M:
+On GT.M (adjust destination directory as appropriate).
 ```
 $ npm install nodem
 $ cp node_modules/nodem/src/v4wNode.m ~/r/
@@ -30,7 +30,11 @@ export GTMCI=/home/osehra/qewd/node_modules/nodem/resources/nodem.ci
 
 On Cache: Obtain cache0610.node from Intersystems and rename it as cache.node and place into the qewd/node\_modules folder.
 
-Load the routines in the routines folder into Cache. Use [IN^%][http://www.hardhats.org/tools/%25%20routine.html] on Cache. Routines get automatically copied on GT.M.
+Load the routines in the routines folder into Cache. Use [IN^%][http://www.hardhats.org/tools/%25%20routine.html] on Cache. Routines get automatically copied on GT.M, with the exception of ewdSymbolTable.m.
+
+````
+cp ./node_modules/ewd-session/mumps/ewdSymbolTable.m ~/r/
+````
 
 Then install QEWD Monitor:
 
@@ -55,8 +59,8 @@ var config = {
 };
 
 var routes = [{
-      path: '/ewd-vista-pushdata',
-            module: 'ewd-vista-push-handler'
+  path: '/ewd-vista-pushdata',
+  module: 'ewd-vista-push-handler'
 }]
 
 var qewd = require('qewd').master;
@@ -70,7 +74,7 @@ Start the service. `NODE_ENV=production` turns on automated copying of modules.
 $ NODE_ENV=production node qewd.js
 ````
 
-Check http://[domain or IP]:8080/ewd-monitor/
+Check http://[domain or IP]:8080/qewd-monitor/
 
 Ultimately, cloning the following repositories will not be necessary. The EWD VistA modules will be installed through NPM. They have already been published to NPMJS, but the published versions are not up to date with the GitHub versions.
 
@@ -90,7 +94,7 @@ $ cd ~/qewd
 $ mkdir www/ewd-vista
 $ cp -R node_modules/ewd-vista/www/* www/ewd-vista/
 
-$ node qewd.js
+$ NODE_ENV=production node qewd.js
 ````
 
 Check http://[domain or IP]:8080/ewd-vista/
