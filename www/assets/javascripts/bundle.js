@@ -147,7 +147,7 @@ clientMethods.loggingIn = function (responseObj, EWD) {
   let greeting = responseObj.message.greeting;
   let lastSignon = responseObj.message.lastSignon;
 
-  toastr.success(postSignInText);
+  if (postSignInText) toastr.success(postSignInText);
   toastr.success(greeting);
   toastr.info(lastSignon);
 
@@ -466,6 +466,7 @@ clientMethods.logout = function (EWD) {
   };
   EWD.send(params, function () {
     EWD.disconnectSocket();
+    location.reload();
   });
 };
 
@@ -818,9 +819,10 @@ module.exports = {
  |  limitations under the License.                                           |
  ----------------------------------------------------------------------------
 
- 25 January 2017
+ 11 May 2017
 
   Thanks to Ward DeBacker for enhancements to the client functionality
+  Thanks to Sam Habiel for fix to emitter.off bug
 
  */
 
@@ -893,7 +895,7 @@ var EWD;
       //console.log('customAjaxFn = ' + typeof customAjaxFn);
 
       var token;
-
+    
       EWD.application = application;
 
       function registerEvent(messageObj, callback) {
@@ -1076,7 +1078,7 @@ var EWD;
             console.log('EWD disconnected socket');
           };
 
-          //console.log('token: ' + token + '; ' + cookieName + ' cookie: ' + getCookie(cookieName));
+          //console.log('token: ' + token + '; ' + cookieName + ' cookie: ' + getCookie(cookieName)); 
 
           if (!token && cookieName && getCookie(cookieName)) token = getCookie(cookieName);
 
@@ -1094,7 +1096,7 @@ var EWD;
             };
           }
           socket.emit('ewdjs', message);
-        });
+        }); 
 
         socket.on('ewdjs', handleResponse);
 
