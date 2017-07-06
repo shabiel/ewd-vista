@@ -5,15 +5,9 @@ let clientMethods = {};
 clientMethods.preLogin1 = function (EWD) {
   let messageObj = {
     service: 'ewd-vista-login',
-    type: 'initialise'
-  };
-  EWD.send(messageObj, function (responseObj) {
-    let messageObj = {
-      service: 'ewd-vista-login',
-      type: 'isLogonInhibited' };
-    EWD.send(messageObj, function (responseObj2) {
-      clientMethods.preLogin2(responseObj2, EWD);
-    });
+    type: 'isLogonInhibited' };
+  EWD.send(messageObj, function (responseObj2) {
+    clientMethods.preLogin2(responseObj2, EWD);
   });
 };
 
