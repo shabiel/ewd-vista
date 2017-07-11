@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 let clientMethods = {};
 
-/* Initialize ST management then call to see if we can log on */
+/* Call to see if we can log on */
 clientMethods.preLogin1 = function (EWD) {
   let messageObj = {
     service: 'ewd-vista-login',
@@ -79,6 +79,7 @@ clientMethods.login = function (EWD) {
   $('#modal-window').modal('show');
 
   // Auto-fill if in development mode
+  // TODO: Fix this. Error now if file does not exist.
   let messageObj = {
     service: 'ewd-vista',
     type: 'getMode'
@@ -715,12 +716,37 @@ $(document).ready(function () {
 
 },{"../lib/mFunctions.js":3,"ewd-client":4,"ewd-vista-login/client/vista-login":1}],3:[function(require,module,exports){
 // In honor of VistA developers
+
+// $Piece function
 String.prototype.piece = function (num, delimiter) {
   if (typeof delimiter === 'undefined') delimiter = '^';
   return this.split(delimiter)[num - 1];
 };
 String.prototype.$p = String.prototype.piece;
 String.prototype.$P = String.prototype.piece;
+
+Number.prototype.piece = function (num, delimiter) {
+  return this;
+};
+Number.prototype.$p = Number.prototype.piece;
+Number.prototype.$P = Number.prototype.piece;
+
+// Timson to JS Date conversion
+Number.prototype.dateFromTimson = function () {
+  var s = this.toString();
+  var year = parseInt(s.substring(0, 3));
+  var month = parseInt(s.substring(3, 5));
+  var day = parseInt(s.substring(5, 7));
+  if (isNaN(year) || isNaN(month) || isNaN(day)) throw new Error('Fileman date is invalid is inexact');
+  var dot = s.substring(7);
+  var hour, min, sec;
+  if (dot === '.') {
+    hour = parseInt(s.substring(8, 10)) || 0;
+    min = parseInt(s.substring(10, 12)) || 0;
+    sec = parseInt(s.substring(12, 14)) || 0;
+  }
+  if (hour || min || sec) return new Date(year + 1700, month, day, hour, min, sec);else return new Date(year, month, day);
+};
 
 },{}],4:[function(require,module,exports){
 /*!
