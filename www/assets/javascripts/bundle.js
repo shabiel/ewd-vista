@@ -79,7 +79,6 @@ clientMethods.login = function (EWD) {
   $('#modal-window').modal('show');
 
   // Auto-fill if in development mode
-  // TODO: Fix this. Error now if file does not exist.
   let messageObj = {
     service: 'ewd-vista',
     type: 'getMode'
@@ -96,6 +95,7 @@ clientMethods.login = function (EWD) {
       };
       EWD.send(messageObj, function (responseObj) {
         let user = responseObj.message.fixtures.user;
+        if (typeof user === 'undefined') return;
         if (user.accessCode && user.verifyCode) {
           $('#username').val(user.accessCode);
           $('#password').val(user.verifyCode);
@@ -602,6 +602,15 @@ clientMethods.setTimeout = function (sessionTimeout, EWD) {
   });
 };
 
+// Sam sez: I think this is the most complex piece of code in Panorama
+// There are several objectives I have in this code:
+// - Late binding. Don't load the js and css until the user clicks.
+//   That now works.
+// - Early binding for services: Load services early. Right now, I am
+//   hardcoding the location for Fileman. I don't like that. TODO
+// - Easy naming conventions. Waay to broken right now. Lots of names
+//   for things (name, htmlName, module). TODO
+// - Avoid naming collisions. I am just getting started, so I don't know.
 clientMethods.loadModules = function (duz, EWD) {
   // Dynamically load the other VistA modules for which the user has
   // correct security keys
@@ -612,23 +621,25 @@ clientMethods.loadModules = function (duz, EWD) {
   };
   EWD.send(messageObj, function (responseObj) {
     let modulesData = responseObj.message.modulesData;
+    $.getScript('assets/javascripts/vista-fileman.js', function () {
+      fileman.defineWidgets(EWD);
 
-    modulesData.forEach(function (element) {
-      if (element.service) return true;
-      // Load client "module"
-      // TODO: Think of a lazy load way of doing this. We don't want to load ALL of the javascript
-      // needed in the first load of the application.
-      $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function () {
-        // Call module prep function
-        window[element.clientModuleName]['prep'](EWD);
+      modulesData.forEach(function (element) {
+        // Nothing to load for service modules
+        if (element.service) return true;
+        // Load client "module"
+        // TODO: Change this to be the same name as the javascript file resolution code
+        // Add to menu -- will need to more elaborate when we have nested
+        // modules. And attach prep function to click.
+        $('#apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
+        $('#app-' + element.htmlName).click(function (e) {
+          $('head').append('<link rel="stylesheet" href="assets/stylesheets/' + element.htmlName + '.css">');
+          $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function () {
+            vista.switchApp(element.module.replace('ewd-', ''));
+            window[element.clientModuleName].prep(EWD);
+          });
+        });
       });
-      // Load stylesheet
-      // TODO: Change this to be the same name as the javascript file resolution code
-      // TODO: Do this in the module, rather than here. No need to load this here.
-      $('head').append('<link rel="stylesheet" href="assets/stylesheets/' + element.htmlName + '.css">');
-      // Add to menu -- will need to more elaborate when we have nested
-      // modules.
-      $('#apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
     });
   });
 };
