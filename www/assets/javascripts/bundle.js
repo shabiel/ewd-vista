@@ -586,6 +586,9 @@ clientMethods.showUserInfo = function (EWD) {
 
     // Use DTIME to set session timeout
     clientMethods.setTimeout(info[7], EWD);
+
+    // Create Keyboard shortcuts
+    clientMethods.createKeyboardShortcuts(EWD);
   });
 };
 
@@ -599,6 +602,24 @@ clientMethods.setTimeout = function (sessionTimeout, EWD) {
   };
   EWD.send(messageObj, function (responseObj) {
     EWD.emit('setTimeoutStatus', responseObj);
+  });
+};
+
+clientMethods.createKeyboardShortcuts = function (EWD) {
+  // Bye bye keyboard listeners
+  $(document).unbind('keydown');
+  $(document).unbind('keypress');
+
+  $(document).on('keypress', function (e) {
+    // Bind Ctrl-Shift-L to logout
+    if (e.ctrlKey && e.key == 'L') {
+      e.preventDefault();clientMethods.logout(EWD);return;
+    }
+
+    // Bind User Information to Ctrl-'
+    if (e.ctrlKey && e.key == '\'') {
+      e.preventDefault();$('#navbar .nav #user-name').click();return;
+    }
   });
 };
 
@@ -616,9 +637,9 @@ clientMethods.loadModules = function (duz, EWD) {
   // correct security keys
   let messageObj = {
     service: 'ewd-vista',
-    type: 'getAuthorizedModules',
-    params: { duz: duz }
+    type: 'getAuthorizedModules'
   };
+
   EWD.send(messageObj, function (responseObj) {
     let modulesData = responseObj.message.modulesData;
     $.getScript('assets/javascripts/vista-fileman.js', function () {
@@ -737,27 +758,52 @@ String.prototype.piece = function (num, delimiter) {
 String.prototype.$p = String.prototype.piece;
 String.prototype.$P = String.prototype.piece;
 
+// This is for NodeM as it can return single pieces not as strings but numbers.
+// E.g. One result is "3^2" (two pieces) - a string.
+// Another is "3^" - (two pieces) - a string.
+// Another is "3" - (one piece) - a number, with which we still want $piece.
 Number.prototype.piece = function (num, delimiter) {
-  return this;
+  if (num === 1) return this;else return '';
 };
 Number.prototype.$p = Number.prototype.piece;
 Number.prototype.$P = Number.prototype.piece;
 
 // Timson to JS Date conversion
+// TODO: Unit Tests for this
 Number.prototype.dateFromTimson = function () {
   var s = this.toString();
-  var year = parseInt(s.substring(0, 3));
-  var month = parseInt(s.substring(3, 5));
-  var day = parseInt(s.substring(5, 7));
-  if (isNaN(year) || isNaN(month) || isNaN(day)) throw new Error('Fileman date is invalid is inexact');
-  var dot = s.substring(7);
+  var fmyear = +s.substring(0, 3);
+  var month = +s.substring(3, 5);
+  var day = +s.substring(5, 7);
+  if (isNaN(fmyear) || isNaN(month) || isNaN(day)) throw new Error('Fileman date is invalid is inexact');
+  var dot = s.substring(7, 8);
   var hour, min, sec;
   if (dot === '.') {
-    hour = parseInt(s.substring(8, 10)) || 0;
-    min = parseInt(s.substring(10, 12)) || 0;
-    sec = parseInt(s.substring(12, 14)) || 0;
+    hour = +s.substring(8, 10) || 0;
+    min = +s.substring(10, 12) || 0;
+    sec = +s.substring(12, 14) || 0;
   }
-  if (hour || min || sec) return new Date(year + 1700, month, day, hour, min, sec);else return new Date(year, month, day);
+  var realYear = fmyear + 1700;
+  if (hour || min || sec) return new Date(realYear, month, day, hour, min, sec);else return new Date(realYear, month, day);
+};
+
+// JS Date to Timson conversion
+// TODO: Unit Tests for this
+Date.prototype.toTimsonDate = function () {
+  var year = this.getFullYear();
+  var month = this.getMonth() + 1; // JS Date has months from 0 to 11, not 1 to 12
+  var day = this.getDate();
+  var hours = this.getHours();
+  var min = this.getMinutes();
+  var sec = this.getSeconds();
+
+  var fmYear = year - 1700;
+
+  var fmDateString = fmYear.toString() + month.toString() + day.toString() + '.' + hours.toString() + min.toString() + sec.toString();
+
+  var fmDateNumber = +fmDateString;
+
+  return fmDateNumber;
 };
 
 },{}],4:[function(require,module,exports){
