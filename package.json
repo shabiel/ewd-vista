@@ -6,7 +6,7 @@
   "author": "Alexis Carlson & Sam Habiel",
   "license": "Apache-2.0",
   "dependencies": {
-    "ewd-session": "~2",
+    "ewd-session": "github:shabiel/ewd-session",
     "ncp": "~2"
   },
   "devDependencies": {
