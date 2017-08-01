@@ -24,8 +24,7 @@
     "url": "git+https://github.com/shabiel/ewd-vista.git"
   },
   "ewdVista": {
-    "module": "ewd-vista",
-    "name": "VistA",
-    "sortOrder": "0"
+    "service": true,
+    "name": "VistA"
   }
 }

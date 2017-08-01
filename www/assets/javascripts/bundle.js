@@ -629,9 +629,8 @@ clientMethods.createKeyboardShortcuts = function (EWD) {
 //   That now works.
 // - Early binding for services: Load services early. Right now, I am
 //   hardcoding the location for Fileman. I don't like that. TODO
-// - Easy naming conventions. Waay to broken right now. Lots of names
-//   for things (name, htmlName, module). TODO
-// - Avoid naming collisions. I am just getting started, so I don't know.
+// - Avoid naming collisions. I am just getting started in JS, so I don't know,
+//   how best to do that.
 clientMethods.loadModules = function (duz, EWD) {
   // Dynamically load the other VistA modules for which the user has
   // correct security keys
@@ -642,22 +641,28 @@ clientMethods.loadModules = function (duz, EWD) {
 
   EWD.send(messageObj, function (responseObj) {
     let modulesData = responseObj.message.modulesData;
-    $.getScript('assets/javascripts/vista-fileman.js', function () {
+    $.getScript('assets/javascripts/fileman.js', function () {
       fileman.defineWidgets(EWD);
 
       modulesData.forEach(function (element) {
         // Nothing to load for service modules
         if (element.service) return true;
         // Load client "module"
-        // TODO: Change this to be the same name as the javascript file resolution code
         // Add to menu -- will need to more elaborate when we have nested
         // modules. And attach prep function to click.
+        //
+        // Future readers: we try to use element.htmlName everywhere, EXCEPT
+        // for element.clientModuleName for the main name of the javascript
+        // object we need to invoke. The reason is that a valid html name isn't
+        // necessarily a valid javascript identifier. E.g. taskman-monitor is
+        // a valid html identifier, but javascript can't use that as an
+        // identifier.
         $('#apps-menu .dropdown-menu').append('<li><a href="#" id="app-' + element.htmlName + '">' + element.name + '</a></li>');
         $('#app-' + element.htmlName).click(function (e) {
           $('head').append('<link rel="stylesheet" href="assets/stylesheets/' + element.htmlName + '.css">');
-          $.getScript('assets/javascripts/' + element.module.replace('ewd-', '') + '.js', function () {
-            vista.switchApp(element.module.replace('ewd-', ''));
-            window[element.clientModuleName].prep(EWD);
+          $.getScript('assets/javascripts/' + element.htmlName + '.js', function () {
+            vista.switchApp(element.htmlName);
+            if (window[element.htmlName]) window[element.htmlName].prep(EWD);else if (window[element.clientModuleName]) window[element.clientModuleName].prep(EWD);else console.error('No click handler defined for menu');
           });
         });
       });
