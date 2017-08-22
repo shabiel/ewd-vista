@@ -21,3 +21,186 @@
 
 .modal-footer { clear: both; }
 
+body {
+    color: #555;
+    font-size: 12px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+footer {
+    background-color: #132F50;
+    bottom: 0px;
+    color: #fff;
+    z-index: 1000
+}
+
+.clear-bottom-margin {
+  margin-bottom: 0;
+}
+
+
+@font-face {
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/merriweather-regular.eot");
+    src: url("../fonts/merriweather-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-regular.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Merriweather';font-style:italic;font-weight:400;src:url("../fonts/merriweather-italic.eot");src:url("../fonts/merriweather-italic.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-italic.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Merriweather';font-style:normal;font-weight:700;src:url("../fonts/merriweather-bold.eot");src:url("../fonts/merriweather-bold.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-bold.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Merriweather';font-style:italic;font-weight:700;src:url("../fonts/merriweather-boldit.eot");src:url("../fonts/merriweather-boldit.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-boldit.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:normal;font-weight:400;src:url("../fonts/sourcesanspro-regular.eot");src:url("../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-regular.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:italic;font-weight:400;src:url("../fonts/sourcesanspro-it.eot");src:url("../fonts/sourcesanspro-it.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-it.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:normal;font-weight:600;src:url("../fonts/sourcesanspro-semibold.eot");src:url("../fonts/sourcesanspro-semibold.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-semibold.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:italic;font-weight:600;src:url("../fonts/sourcesanspro-semiboldit.eot");src:url("../fonts/sourcesanspro-semiboldit.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-semiboldit.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:normal;font-weight:700;src:url("../fonts/sourcesanspro-bold.eot");src:url("../fonts/sourcesanspro-bold.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-bold.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'Source Sans Pro';font-style:italic;font-weight:700;src:url("../fonts/sourcesanspro-boldit.eot");src:url("../fonts/sourcesanspro-boldit.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-boldit.ttf") format("truetype")
+}
+
+@font-face {
+    font-family:'icomoon';src:url("../fonts/icomoon.eot?x3bbuk");src:url("../fonts/icomoon.eot?x3bbuk#iefix") format("embedded-opentype"),url("../fonts/icomoon.ttf?x3bbuk") format("truetype"),url("../fonts/icomoon.woff?x3bbuk") format("woff"),url("../fonts/icomoon.svg?x3bbuk#icomoon") format("svg");font-weight:normal;font-style:normal
+}
+
+hr {
+    clear: both;
+    margin: 10px 0;
+    border-color: #ddd
+}
+
+h1 {
+    font-size: 20px;
+    color: #0D68A1
+}
+
+h2 {
+    font-size: 18px
+}
+
+h3 {
+    font-size: 16px;
+    margin-bottom: 25px
+}
+
+h4 {
+    font-size: 14px
+}
+
+h5 {
+    font-size: 12px
+}
+
+h3,h4,h5,h6 {
+    color: #555;
+    font-weight: bold;
+    padding: 10px 0px
+}
+
+.small {
+    font-size: 11px
+}
+
+a {
+    color: #0D68A1
+}
+
+a:hover,a:focus,a:active,a.active {
+    box-shadow: none
+}
+
+a:focus,a:active,a.active,a.active:focus {
+    outline: 1px dotted
+}
+
+a:hover,a.active:hover {
+    color: #132F50
+}
+
+.font-size-10 {
+    font-size: 10px !important
+}
+
+.font-size-11 {
+    font-size: 11px !important
+}
+
+.font-size-12 {
+    font-size: 12px !important
+}
+
+.font-size-13 {
+    font-size: 13px !important
+}
+
+.font-size-14 {
+    font-size: 14px !important
+}
+
+.font-size-15 {
+    font-size: 15px !important
+}
+
+.font-size-16 {
+    font-size: 16px !important
+}
+
+.font-size-17 {
+    font-size: 17px !important
+}
+
+.font-size-18 {
+    font-size: 18px !important
+}
+
+.font-size-19 {
+    font-size: 19px !important
+}
+
+.font-size-20 {
+    font-size: 20px !important
+}
+
+.font-size-21 {
+    font-size: 21px !important
+}
+
+.font-size-22 {
+    font-size: 22px !important
+}
+
+.font-size-23 {
+    font-size: 23px !important
+}
+
+.font-size-24 {
+    font-size: 24px !important
+}
+
+.bold-font {
+    font-weight: bold !important
+}

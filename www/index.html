@@ -48,63 +48,61 @@
   </head>
   
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">VistA</a>
-        </div>
+    <nav class="navbar navbar-default clear-bottom-margin">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">VistA</a>
+      </div>
+      
+      <div id="navbar" class="navbar-collapse collapse invisible">
+        <ul class="nav navbar-nav user">
+          <li class="dropdown">
+            <a href="#" id="user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+              <span class="caret"></span>
+            </a>
+            
+            <ul class="dropdown-menu">
+              <li><a href="#" id="user-duz" class="user-info">DUZ: </a></li>
+              <li><a href="#" id="user-fullname" class="user-info">Name: </a></li>
+              <li><a href="#" id="user-title" class="user-info">Title: </a></li>
+              <li><a href="#" id="user-division" class="user-info">Division: </a></li>
+              <li><a href="#" id="user-service" class="user-info">Service: </a></li>
+              <li><a href="#" id="user-language" class="user-info">Language: </a></li>
+              <li><a href="#" id="user-dtime" class="user-info">DTIME: </a></li>
+            </ul>
+          </li>
+        </ul>
         
-        <div id="navbar" class="navbar-collapse collapse invisible">
-          <ul class="nav navbar-nav user">
-            <li class="dropdown">
-              <a href="#" id="user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                <span class="caret"></span>
-              </a>
-              
-              <ul class="dropdown-menu">
-                <li><a href="#" id="user-duz" class="user-info">DUZ: </a></li>
-                <li><a href="#" id="user-fullname" class="user-info">Name: </a></li>
-                <li><a href="#" id="user-title" class="user-info">Title: </a></li>
-                <li><a href="#" id="user-division" class="user-info">Division: </a></li>
-                <li><a href="#" id="user-service" class="user-info">Service: </a></li>
-                <li><a href="#" id="user-language" class="user-info">Language: </a></li>
-                <li><a href="#" id="user-dtime" class="user-info">DTIME: </a></li>
-              </ul>
-            </li>
-          </ul>
-          
-          <ul id="apps-menu" class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-              role="button" aria-haspopup="true" aria-expanded="true">Apps
-                <span class="caret"></span>
-              </a>
-              
-              <ul class="dropdown-menu"></ul>
-            </li>
-          </ul>
-          
-          <ul id="options-menu" class="nav navbar-nav invisible">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-              role="button" aria-haspopup="true" aria-expanded="true">
-                <span id="app-name"></span>
-                <span class="caret"></span>
-              </a>
-              
-              <ul class="dropdown-menu"></ul>
-            </li>
-          </ul>
-          
-          <ul class="nav navbar-nav navbar-right navbar-form">
-            <li>
-              <button id="symbols-button" class="btn btn-default nav-button">Symbol Table</button>
-            </li>
-            <li>
-              <button id="logout-button" class="btn btn-default nav-button">Log Out</button>
-            </li>
-          </ul>
-        </div>
+        <ul id="apps-menu" class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+            role="button" aria-haspopup="true" aria-expanded="true">Apps
+              <span class="caret"></span>
+            </a>
+            
+            <ul class="dropdown-menu"></ul>
+          </li>
+        </ul>
+        
+        <ul id="options-menu" class="nav navbar-nav invisible">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+            role="button" aria-haspopup="true" aria-expanded="true">
+              <span id="app-name"></span>
+              <span class="caret"></span>
+            </a>
+            
+            <ul class="dropdown-menu"></ul>
+          </li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right navbar-form">
+          <li>
+            <button id="symbols-button" class="btn btn-default nav-button">Symbol Table</button>
+          </li>
+          <li>
+            <button id="logout-button" class="btn btn-default nav-button">Log Out</button>
+          </li>
+        </ul>
       </div>
     </nav>
     
@@ -113,6 +111,17 @@
     <!-- Main content -->
     <div id="main-content" class="container-fluid"></div>
     
+    <!-- Footer -->
+    <footer>
+      <div class="col-xs-3">
+        <p><strong>Panorama</strong></p>
+      </div>
+      <div class="col-xs-9 application-footer-items-right">
+        <div class="pull-right">
+          <p><strong>Some cool info here</strong></p>
+        </div>
+			</div>
+    </footer>
     <script src="assets/javascripts/bundle.js"></script>
   </body>
 </html>
