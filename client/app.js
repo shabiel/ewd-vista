@@ -7,6 +7,9 @@ const EWD = require('ewd-client').EWD;
 // M functions added to String prototype
 require('../lib/mFunctions.js');
 
+// Polyfills for IE
+require('../lib/polyfills.js');
+
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
 

@@ -642,7 +642,7 @@ clientMethods.loadModules = function (duz, EWD) {
   EWD.send(messageObj, function (responseObj) {
     let modulesData = responseObj.message.modulesData;
     $.getScript('assets/javascripts/fileman.js', function () {
-      fileman.defineWidgets(EWD);
+      vista.fileman.defineWidgets(EWD);
 
       modulesData.forEach(function (element) {
         // Nothing to load for service modules
@@ -681,6 +681,9 @@ const EWD = require('ewd-client').EWD;
 
 // M functions added to String prototype
 require('../lib/mFunctions.js');
+
+// Polyfills for IE
+require('../lib/polyfills.js');
 
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
@@ -752,7 +755,7 @@ $(document).ready(function () {
   EWD.start('ewd-vista', $, io);
 });
 
-},{"../lib/mFunctions.js":3,"ewd-client":4,"ewd-vista-login/client/vista-login":1}],3:[function(require,module,exports){
+},{"../lib/mFunctions.js":3,"../lib/polyfills.js":4,"ewd-client":5,"ewd-vista-login/client/vista-login":1}],3:[function(require,module,exports){
 // In honor of VistA developers
 
 // $Piece function
@@ -812,6 +815,42 @@ Date.prototype.toTimsonDate = function () {
 };
 
 },{}],4:[function(require,module,exports){
+// Object.assign polyfill for IE11
+if (typeof Object.assign != 'function') {
+  // Must be writable: true, enumerable: false, configurable: true
+  Object.defineProperty(Object, 'assign', {
+    value: function assign(target, varArgs) {
+      // .length of function is 2
+      'use strict';
+
+      if (target == null) {
+        // TypeError if undefined or null
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      var to = Object(target);
+
+      for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+
+        if (nextSource != null) {
+          // Skip over if undefined or null
+          for (var nextKey in nextSource) {
+            // Avoid bugs when hasOwnProperty is shadowed
+            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey];
+            }
+          }
+        }
+      }
+      return to;
+    },
+    writable: true,
+    configurable: true
+  });
+}
+
+},{}],5:[function(require,module,exports){
 /*!
 
  ----------------------------------------------------------------------------
@@ -843,7 +882,7 @@ Date.prototype.toTimsonDate = function () {
 'use strict';
 
 module.exports = require('./lib/ewd');
-},{"./lib/ewd":5}],5:[function(require,module,exports){
+},{"./lib/ewd":6}],6:[function(require,module,exports){
 /*
 
  ----------------------------------------------------------------------------
@@ -875,7 +914,7 @@ module.exports = require('./lib/ewd');
 module.exports = {
   EWD: require('./proto/ewd-client')
 };
-},{"./proto/ewd-client":6}],6:[function(require,module,exports){
+},{"./proto/ewd-client":7}],7:[function(require,module,exports){
 /*!
 
  ----------------------------------------------------------------------------
@@ -902,7 +941,7 @@ module.exports = {
  |  limitations under the License.                                           |
  ----------------------------------------------------------------------------
 
- 11 May 2017
+ 28 July 2017
 
   Thanks to Ward DeBacker for enhancements to the client functionality
   Thanks to Sam Habiel for fix to emitter.off bug
@@ -957,6 +996,9 @@ var EWD;
     var url;
     var cookieName = 'ewdSession';
     var appName = application;
+    var jwt = false;
+    var jwt_decode;
+
     if (typeof application === 'object') {
       $ = application.$;
       io = application.io;
@@ -964,6 +1006,8 @@ var EWD;
       url = application.url;
       appName = application.application;
       cookieName = application.cookieName;
+      jwt = application.jwt || false;
+      jwt_decode = application.jwt_decode;
     }
 
     function getCookie(name) {
@@ -994,6 +1038,12 @@ var EWD;
           }
           delete messageObj.params.targetId;
         }
+        else if (jwt) {
+          cb = function(responseObj) {
+            if (responseObj.message && responseObj.message.token) token = responseObj.message.token;
+            callback(responseObj);
+          };
+        }
         EWD.on(type, cb, true);
       }
 
@@ -1019,11 +1069,21 @@ var EWD;
             document.cookie = name + "=" + token;
           };
 
+          if (!EWD.jwt) {
+            Object.defineProperty(EWD, 'jwt', {
+              get: function() {
+                if (jwt && jwt_decode) return jwt_decode(token);
+                return false;
+              }
+            });
+          }
+
           console.log(application + ' registered');
           EWD.emit('ewd-registered');
           return;
         }
         if (messageObj.type === 'ewd-reregister') {
+          if (jwt && messageObj.message.token) token = messageObj.message.token; // update JWT with new session info (ie new socketId)
           console.log('Re-registered');
           EWD.emit('ewd-reregistered');
           return;
@@ -1127,6 +1187,7 @@ var EWD;
         }
         if (token) {
           messageObj.token = token;
+          //if (messageObj.type = 'ewd-register') messageObj.jwt = jwt;
           socket.emit('ewdjs', messageObj);
           delete messageObj.token;
           if (EWD.log) console.log('sent: ' + JSON.stringify(messageObj));
@@ -1171,11 +1232,13 @@ var EWD;
               type: 'ewd-reregister',
               token: token
             };
+            //if (jwt) message.jwt = jwt;
           }
           else {
             var message = {
               type: 'ewd-register',
-              application: application
+              application: application,
+              jwt: jwt
             };
           }
           socket.emit('ewdjs', message);
@@ -1184,7 +1247,7 @@ var EWD;
         socket.on('ewdjs', handleResponse);
 
         socket.on('disconnect', function() {
-          console.log('*** server has disconnected socket, probably because it shut down');
+          console.log('*** server has disconnected socket, possibly because it shut down or because token has expired');
           EWD.emit('socketDisconnected');
         });
 
