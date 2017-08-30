@@ -34,6 +34,10 @@ footer {
     z-index: 1000
 }
 
+footer * {
+    background-color: inherit;
+}
+
 .clear-bottom-margin {
   margin-bottom: 0;
 }

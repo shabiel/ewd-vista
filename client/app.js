@@ -29,6 +29,7 @@ vista = {
   switchApp: function(applicationName) {
     // Clear the page
     $('#main-content').empty();
+    $('footer').empty();
     // Clear the nav
     $('#options-menu').addClass('invisible');
     $('#options-name').text('');
