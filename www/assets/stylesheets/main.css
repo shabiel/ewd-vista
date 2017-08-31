@@ -44,26 +44,6 @@ footer * {
 
 
 @font-face {
-    font-family: 'Merriweather';
-    font-style: normal;
-    font-weight: 400;
-    src: url("../fonts/merriweather-regular.eot");
-    src: url("../fonts/merriweather-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-regular.ttf") format("truetype")
-}
-
-@font-face {
-    font-family:'Merriweather';font-style:italic;font-weight:400;src:url("../fonts/merriweather-italic.eot");src:url("../fonts/merriweather-italic.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-italic.ttf") format("truetype")
-}
-
-@font-face {
-    font-family:'Merriweather';font-style:normal;font-weight:700;src:url("../fonts/merriweather-bold.eot");src:url("../fonts/merriweather-bold.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-bold.ttf") format("truetype")
-}
-
-@font-face {
-    font-family:'Merriweather';font-style:italic;font-weight:700;src:url("../fonts/merriweather-boldit.eot");src:url("../fonts/merriweather-boldit.eot?#iefix") format("embedded-opentype"),url("../fonts/merriweather-boldit.ttf") format("truetype")
-}
-
-@font-face {
     font-family:'Source Sans Pro';font-style:normal;font-weight:400;src:url("../fonts/sourcesanspro-regular.eot");src:url("../fonts/sourcesanspro-regular.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-regular.ttf") format("truetype")
 }
 
@@ -85,10 +65,6 @@ footer * {
 
 @font-face {
     font-family:'Source Sans Pro';font-style:italic;font-weight:700;src:url("../fonts/sourcesanspro-boldit.eot");src:url("../fonts/sourcesanspro-boldit.eot?#iefix") format("embedded-opentype"),url("../fonts/sourcesanspro-boldit.ttf") format("truetype")
-}
-
-@font-face {
-    font-family:'icomoon';src:url("../fonts/icomoon.eot?x3bbuk");src:url("../fonts/icomoon.eot?x3bbuk#iefix") format("embedded-opentype"),url("../fonts/icomoon.ttf?x3bbuk") format("truetype"),url("../fonts/icomoon.woff?x3bbuk") format("woff"),url("../fonts/icomoon.svg?x3bbuk#icomoon") format("svg");font-weight:normal;font-style:normal
 }
 
 hr {
