@@ -607,13 +607,18 @@ clientMethods.setTimeout = function (sessionTimeout, EWD) {
 
 clientMethods.createKeyboardShortcuts = function (EWD) {
   // Bye bye keyboard listeners
-  $(document).unbind('keydown');
-  $(document).unbind('keypress');
+  $(window).unbind('keydown');
+  $(window).unbind('keypress');
 
-  $(document).on('keypress', function (e) {
+  $(window).on('keydown', function (e) {
     // Bind Ctrl-Shift-L to logout
     if (e.ctrlKey && e.key == 'L') {
       e.preventDefault();clientMethods.logout(EWD);return;
+    }
+
+    // Bind Ctrl-Shift-M to logout
+    if (e.ctrlKey && e.key == 'M') {
+      e.preventDefault();$('#apps-menu li.dropdown a.dropdown-toggle').click();return;
     }
 
     // Bind User Information to Ctrl-'
