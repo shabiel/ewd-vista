@@ -1,14 +1,18 @@
-// EWD requirements
+// EWD Client
 const EWD = require('ewd-client').EWD;
-// Uncomment this line for testing with Mocha
-// var EWD   = require('ewd-client').EWD;
-//const io  = require('socket.io-client');
 
 // M functions added to String prototype
 require('../lib/mFunctions.js');
 
-// Polyfills for IE
+// Polyfills for IE (mostly from MDN)
 require('../lib/polyfills.js');
+
+// Jquery
+$ = window.jQuery = require('jquery');
+
+// Bootstrap
+require('bootstrap');
+
 
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;

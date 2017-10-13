@@ -11,17 +11,24 @@
   },
   "devDependencies": {
     "babelify": "",
+    "bootstrap": "^3.3.7",
     "browserify": "",
     "eslint": "",
     "eslint-plugin-json": "",
     "ewd-client": "~1",
+    "jquery": "^3.2.1",
     "mocha": "",
     "socket.io-client": "~1",
+    "uglify-es": "^3.1.3",
     "zombie": ""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shabiel/ewd-vista.git"
+  },
+  "scripts": {
+    "build:browserify": "browserify -t [babelify] ./client/app.js | ./node_modules/uglify-es/bin/uglifyjs > ./www/assets/javascripts/bundle.js",
+    "build": "npm run build:browserify"
   },
   "ewdVista": {
     "service": true,
