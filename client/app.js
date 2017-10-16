@@ -1,3 +1,5 @@
+// This is the main client file in Panorama that starts EVERYTHING!
+//
 // EWD Client
 const EWD = require('ewd-client').EWD;
 
@@ -8,11 +10,23 @@ require('../lib/mFunctions.js');
 require('../lib/polyfills.js');
 
 // Jquery
-$ = window.jQuery = require('jquery');
+global.$ = global.jQuery = require('jquery');
+
+// Jquery-UI
+$.ui = jQuery.ui = require('jquery-ui');
+require('jquery-ui/ui/position');
+require('jquery-ui/ui/widgets/autocomplete');
+require('jquery-ui/ui/widgets/menu');
+require('jquery-ui/ui/unique-id');
+require('jquery-ui/ui/keycode');
+require('jquery-ui/ui/safe-active-element');
 
 // Bootstrap
 require('bootstrap');
+//require('../node_modules/bootstrap/dist/css/bootstrap.css');
 
+// Toastr
+global.toastr = require('toastr');
 
 // Uncomment this line in production
 // toastr.options.preventDuplicates = true;
@@ -68,7 +82,7 @@ $(document).ready(function() {
     console.log('**** Got the ewd-register event!!');
 
     EWD.on('socketDisconnected', function() {
-      //location.reload();
+      location.reload();
     });
 
     // This is good for testing, but I don't want it normally.
