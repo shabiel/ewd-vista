@@ -19,6 +19,7 @@
     "eslint-plugin-json": "",
     "ewd-client": "~1",
     "font-awesome": "^4.7.0",
+    "fontface-source-sans-pro": "^2.0.10-alpha1",
     "jquery": "^3.2.1",
     "jquery-ui": "^1.12.1",
     "mocha": "",
@@ -35,7 +36,8 @@
   "scripts": {
     "build:browserify": "browserify -t babelify -t deamdify -g browserify-css ./client/app.js | ./node_modules/uglify-es/bin/uglifyjs > ./www/assets/javascripts/bundle.js",
     "build:font-awesome": "cp node_modules/font-awesome/css/font-awesome.css www/assets/stylesheets/ && cp node_modules/font-awesome/fonts/* www/assets/fonts/",
-    "build": "npm run build:browserify && npm run build:font-awesome"
+    "build:font-ssp": "cp node_modules/fontface-source-sans-pro/fonts/TTF/* www/assets/fonts/ && cp node_modules/fontface-source-sans-pro/fonts/EOT/* www/assets/fonts/",
+    "build": "npm run build:browserify && npm run build:font-awesome && npm run build:font-ssp"
   },
   "ewdVista": {
     "service": true,
