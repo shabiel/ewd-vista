@@ -36,9 +36,11 @@ require('toastr/package/toastr.css');
 // toastr.options.preventDuplicates = true;
 
 
-// Xterm
+// Xterm (needs browserify-css with -g flag)
 let vista = {};
 vista.terminal = require('xterm');
+require('xterm/lib/addons/fit/fit');
+require('xterm/lib/addons/attach/attach');
 require('xterm/dist/xterm.css');
 
 // Local stylesheets

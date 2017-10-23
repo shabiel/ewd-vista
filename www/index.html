@@ -64,6 +64,9 @@
             <button id="symbols-button" class="btn btn-default nav-button">Symbol Table</button>
           </li>
           <li>
+            <button id="rns-button" class="btn btn-default nav-button">Roll &amp; Scroll</button>
+          </li>
+          <li>
             <button id="logout-button" class="btn btn-default nav-button">Log Out</button>
           </li>
         </ul>
@@ -76,7 +79,20 @@
     <div id="main-content" class="container-fluid"></div>
 
     <!-- VistA Terminal -->
-    <div id="vista-terminal"></div>
+    <div id="vista-terminal" class="modal fade" tabindex='-1'>
+      <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">VistA Terminal</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
     
     <!-- Footer -->
     <footer></footer>
