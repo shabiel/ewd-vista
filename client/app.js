@@ -19,6 +19,7 @@ $.ui = jQuery.ui = require('jquery-ui');
 require('jquery-ui/ui/position');
 require('jquery-ui/ui/widgets/autocomplete');
 require('jquery-ui/ui/widgets/menu');
+require('jquery-ui/ui/widgets/datepicker');
 require('jquery-ui/ui/unique-id');
 require('jquery-ui/ui/keycode');
 require('jquery-ui/ui/safe-active-element');
@@ -101,7 +102,7 @@ $(document).ready(function() {
     console.log('**** Got the ewd-register event!!');
 
     EWD.on('socketDisconnected', function() {
-      location.reload();
+      //location.reload();
     });
 
     // This is good for testing, but I don't want it normally.
