@@ -71,6 +71,8 @@ vista.switchApp = function(applicationName) {
   $('#options-menu').addClass('invisible');
   $('#options-name').text('');
   $('#options-menu .dropdown-menu').html('');
+    $('#dynamic-options').html('');
+	$('#dynamic-options').addClass('invisible');
 
   let params = {
     service: 'ewd-vista',
