@@ -7,7 +7,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "ewd-session": "",
-    "ncp": "~2"
+    "ncp": "~2",
+    "xterm": "^4.6.0"
   },
   "devDependencies": {
     "babelify": "",
@@ -26,7 +27,7 @@
     "socket.io-client": "^2.3.0",
     "toastr": "^2.1.4",
     "uglify-es": "^3.3.9",
-    "xterm": "^2.9.2",
+    "xterm": "^4.6.0",
     "zombie": ""
   },
   "repository": {
