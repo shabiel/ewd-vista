@@ -1,6 +1,6 @@
 {
   "name": "ewd-vista",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "EWD VistA: application core",
   "main": "index.js",
   "author": "Alexis Carlson & Sam Habiel",
